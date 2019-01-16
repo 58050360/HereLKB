@@ -10,17 +10,16 @@
 
 
     <ImageView
-        android:contentDescription="@string/desc"
         android:id="@+id/iconapp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/ic_here"
-        />
+        android:layout_marginTop="20dp"
+        android:contentDescription="@string/desc"
+        android:src="@drawable/ic_here" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/txt_em"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/txt_email"
@@ -32,7 +31,7 @@
         android:textStyle="normal" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/txt_pw"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/txt_email"
@@ -57,6 +56,7 @@
         android:drawableLeft="@drawable/ic_action_user"
         android:ems="10"
         android:importantForAutofill="no"
+
         android:inputType="textEmailAddress"
         android:textColor="#FFFFFF"
         tools:textSize="18sp" />
@@ -112,6 +112,7 @@
         android:background="@color/back"
         android:text="Forget Password"
         android:textColor="#FFFFFF" />
+
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_width="30dp"
