@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "400273708572",
+    "firebase_url": "https://herelkb.firebaseio.com",
+    "project_id": "herelkb",
+    "storage_bucket": "herelkb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:400273708572:android:1088a01572db3e2d",
+        "android_client_info": {
+          "package_name": "com.skyzhaneul.herelkb"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "400273708572-7s90h8l2r0nthsqb9ednpsecjahfjrls.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.skyzhaneul.herelkb",
+            "certificate_hash": "3ec81946c8762186aa17988a97d7cca9623317a3"
+          }
+        },
+        {
+          "client_id": "400273708572-kmlr0v0qqq6qv5q5kfns985q24j8ebrq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUuR1sEUJ3T3d2141p5fZsni65cd_5ZVQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "400273708572-kmlr0v0qqq6qv5q5kfns985q24j8ebrq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
