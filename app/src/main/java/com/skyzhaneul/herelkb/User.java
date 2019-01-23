@@ -1,7 +1,9 @@
 package com.skyzhaneul.herelkb;
 
 public class User {
-    public String name, email ,phone ;
+    public String name;
+    public String phone;
+    public String email;
 
     public  User() {
 

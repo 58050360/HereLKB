@@ -88,22 +88,19 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
+
                 if (task.isSuccessful()) {
-                    User user = new User(
-                            name,
-                            email,
-                            phone
-                    );
-                    FirebaseDatabase.getInstance().getReference("Users")
+                    User user = new User(name, email, phone);
+                    FirebaseDatabase.getInstance().getReference("users")
                             .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                             .setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             progressBar.setVisibility(View.GONE);
-                            if (task.isSuccessful()) {
-                                Toast.makeText(getApplicationContext(), "User Register Successful", Toast.LENGTH_SHORT).show();
+                            if(task.isSuccessful()){
+                                Toast.makeText(getApplicationContext(),"User Register Successful",Toast.LENGTH_SHORT).show();
                             } else {
-                                //display a failure message
+                                //display failure message
                             }
                         }
                     });
