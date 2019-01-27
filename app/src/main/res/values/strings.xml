@@ -1,9 +1,9 @@
 <resources>
-        <string name="app_name">HereLKB</string>
-        <string name="desc">image</string>
-        <string name="action_settings">Settings</string>
-        <string name="minimum_password">Please insert 6 digits</string>
-        <string name="auth_failed">Authentication Fail!</string>
-        <string name="title_activity_authen">AuthenActivity</string>
-        <string name="title_activity_profile">ProfileActivity</string>
+    <string name="app_name">HereLKB</string>
+    <string name="desc">image</string>
+    <string name="action_settings">Settings</string>
+    <string name="minimum_password">Please insert 6 digits</string>
+    <string name="auth_failed">Authentication Fail!</string>
+    <string name="title_activity_authen">AuthenActivity</string>
+    <string name="title_activity_profile">ProfileActivity</string>
 </resources>

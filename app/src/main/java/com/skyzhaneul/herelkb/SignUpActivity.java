@@ -14,6 +14,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener {
@@ -84,11 +85,10 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             txt_signphone.requestFocus();
             return;
         }
-        progressBar.setVisibility(View.VISIBLE);
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
-
+                progressBar.setVisibility(View.VISIBLE);
                 if (task.isSuccessful()) {
                     User user = new User(name, email, phone);
                     FirebaseDatabase.getInstance().getReference("users")
@@ -99,13 +99,22 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                             progressBar.setVisibility(View.GONE);
                             if(task.isSuccessful()){
                                 Toast.makeText(getApplicationContext(),"User Register Successful",Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(SignUpActivity.this,MainActivity.class);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                                startActivity(intent);
                             } else {
                                 //display failure message
                             }
                         }
                     });
                 } else {
-                    Toast.makeText(getApplicationContext(), "Some Error occured", Toast.LENGTH_SHORT).show();
+                   if (task.getException() instanceof FirebaseAuthUserCollisionException)
+                   { Toast.makeText(getApplicationContext(),"You are already registered" , Toast.LENGTH_SHORT).show();
+                       progressBar.setVisibility(View.GONE);
+                   } else {
+                       Toast.makeText(getApplicationContext(),task.getException().getMessage(),Toast.LENGTH_SHORT).show();
+                   }
+
                 }
             }
         });
@@ -118,7 +127,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                 registerUser();
                 break;
             case R.id.gologin_action:
-                startActivity(new Intent(this, MainActivity.class));
+                startActivity(new Intent(this, LoginActivity.class));
                 break;
         }
     }
