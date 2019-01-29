@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -34,7 +33,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         findViewById(R.id.signup_action).setOnClickListener(this);
         findViewById(R.id.login_action).setOnClickListener(this);
-        findViewById(R.id.reset_action).setOnClickListener(this);
+        findViewById(R.id.forgot_pass).setOnClickListener(this);
     }
 
     private void userLogin() {
@@ -83,10 +82,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.signup_action:
                 startActivity(new Intent(this, SignUpActivity.class));
                 break;
+            case R.id.forgot_pass:
+                startActivity(new Intent(this,PasswordActivity.class));
+                break;
             case R.id.login_action:
                 userLogin();
-            case R.id.reset_action:
-                startActivity(new Intent(this,PasswordActivity.class));
+
         }
     }
 
