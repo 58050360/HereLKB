@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -26,12 +27,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
         mAuth = FirebaseAuth.getInstance();
-        txt_email = (EditText) findViewById(R.id.txt_signemail);
-        txt_password = (EditText) findViewById(R.id.txt_signpassword);
+        txt_email = (EditText) findViewById(R.id.txt_email);
+        txt_password = (EditText) findViewById(R.id.txt_password);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
+
 
         findViewById(R.id.signup_action).setOnClickListener(this);
         findViewById(R.id.login_action).setOnClickListener(this);
+        findViewById(R.id.reset_action).setOnClickListener(this);
     }
 
     private void userLogin() {
@@ -58,9 +61,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             return;
         }
         progressBar.setVisibility(View.VISIBLE);
+
         mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
+                progressBar.setVisibility(View.GONE);
                 if(task.isSuccessful()){
                     Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -80,6 +85,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.login_action:
                 userLogin();
+            case R.id.reset_action:
+                startActivity(new Intent(this,PasswordActivity.class));
         }
     }
 
