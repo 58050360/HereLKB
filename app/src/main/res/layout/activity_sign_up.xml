@@ -19,7 +19,7 @@
         android:src="@drawable/ic_here" />
 
     <TextView
-        android:id="@+id/txt_em"
+        android:id="@+id/txt_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/txt_signemail"
@@ -82,7 +82,7 @@
         android:layout_marginLeft="30dp"
         android:layout_marginTop="1dp"
         android:layout_marginRight="30dp"
-        android:drawableLeft="@drawable/ic_action_user"
+        android:drawableLeft="@drawable/ic_action_mail"
         android:ems="10"
         android:hint="your e-mail"
         android:importantForAutofill="no"

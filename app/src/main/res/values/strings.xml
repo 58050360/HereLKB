@@ -6,4 +6,14 @@
     <string name="auth_failed">Authentication Fail!</string>
     <string name="title_activity_authen">AuthenActivity</string>
     <string name="title_activity_profile">ProfileActivity</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="e_mail">E-mail</string>
+    <string name="seacrh_here">Seacrh Here</string>
+    <string name="search">Search</string>
+    <string name="opentime">opentime</string>
+    <string name="tel">tel</string>
+    <string name="locatename">locatename</string>
+
 </resources>

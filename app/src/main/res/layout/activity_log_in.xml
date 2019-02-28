@@ -19,16 +19,17 @@
         android:src="@drawable/ic_here" />
 
     <TextView
-        android:id="@+id/txt_em"
+        android:id="@+id/txt_search"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/txt_email"
         android:layout_alignParentStart="true"
         android:layout_marginStart="69dp"
         android:layout_marginTop="-24dp"
-        android:text="E-mail"
+        android:text="@string/e_mail"
         android:textColor="#FFFFFF"
-        android:textStyle="normal" />
+        android:textStyle="normal"
+        android:typeface="monospace" />
 
     <TextView
         android:id="@+id/txt_pw"
@@ -38,9 +39,10 @@
         android:layout_alignParentStart="true"
         android:layout_marginStart="69dp"
         android:layout_marginTop="60dp"
-        android:text="Password"
+        android:text="@string/password"
         android:textColor="#FFFFFF"
-        android:textStyle="normal" />
+        android:textStyle="normal"
+        android:typeface="monospace" />
 
     <EditText
 
@@ -49,16 +51,15 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/iconapp"
         android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="1dp"
         android:layout_marginRight="30dp"
-        android:drawableLeft="@drawable/ic_action_user"
+        android:drawableStart="@drawable/ic_action_mail"
         android:ems="10"
         android:importantForAutofill="no"
-
         android:inputType="textEmailAddress"
         android:textColor="#FFFFFF"
+        android:typeface="monospace"
         tools:textSize="18sp" />
 
     <EditText
@@ -70,11 +71,12 @@
         android:layout_marginLeft="30dp"
         android:layout_marginTop="30dp"
         android:layout_marginRight="30dp"
-        android:drawableLeft="@drawable/ic_action_pass"
+        android:drawableStart="@drawable/ic_action_pass"
         android:ems="10"
         android:inputType="textPassword"
         android:textColor="#FFFFFF"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        android:typeface="monospace" />
 
     <Button
         android:id="@+id/login_action"
@@ -84,9 +86,10 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="18dp"
         android:background="@color/colorbutton1"
-        android:text="Login"
+        android:text="@string/login"
         android:textColor="#FFFFFF"
         android:textStyle="normal|bold"
+        android:typeface="monospace"
         tools:textSize="18sp" />
 
     <Button
@@ -97,9 +100,10 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="18dp"
         android:background="@color/colorbutton2"
-        android:text="Sign Up"
+        android:text="@string/sign_up"
         android:textColor="#FFFFFF"
         android:textStyle="normal|bold"
+        android:typeface="monospace"
         tools:textSize="18sp" />
 
     <Button
@@ -111,12 +115,15 @@
         android:layout_marginTop="51dp"
         android:background="@color/back"
         android:text="Forgot Password"
-        android:textColor="#FFFFFF" />
+        android:textColor="#FFFFFF"
+        android:typeface="monospace" />
 
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_width="30dp"
         android:layout_height="30dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         android:layout_gravity="center|bottom"
         android:layout_marginBottom="20dp"
         android:visibility="gone" />
