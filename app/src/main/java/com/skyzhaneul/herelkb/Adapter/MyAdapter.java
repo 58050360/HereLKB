@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.skyzhaneul.herelkb.CategoryItem;
 import com.skyzhaneul.herelkb.R;
+import com.skyzhaneul.herelkb.ViewHolder.CategoryViewHolder;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;

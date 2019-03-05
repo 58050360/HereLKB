@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.GridLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -43,8 +44,9 @@ public class MainActivity extends AppCompatActivity {
     FirebaseRecyclerOptions<CategoryItem> options;
     FirebaseRecyclerAdapter<CategoryItem, CategoryViewHolder> adapter;
     EditText editText;
+    TextView textView;
     ArrayList<CategoryItem> arrayList;
-
+    String data;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +54,10 @@ public class MainActivity extends AppCompatActivity {
         arrayList = new ArrayList<>();
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        textView  = (TextView) findViewById(R.id.txt_nameuser);
+        data = getIntent().getExtras().getString("Email");
+        textView.setText("User : "+data);
+
         recyclerView = (RecyclerView) findViewById(R.id.recycleview);
         editText = (EditText) findViewById(R.id.editText);
         editText.addTextChangedListener(new TextWatcher() {
@@ -107,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(), 1);
         recyclerView.setLayoutManager(gridLayoutManager);
         adapter.startListening();
-        recyclerView.setAdapter(adapter);
+       recyclerView.setAdapter(adapter);
     }
 
     private void search(String s) {
@@ -143,12 +149,14 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         if (adapter != null)
             adapter.startListening();
+        recyclerView.setAdapter(adapter);
     }
 
     @Override
     protected void onStop() {
         if (adapter != null)
             adapter.stopListening();
+        recyclerView.setAdapter(adapter);
         super.onStop();
     }
 
@@ -157,6 +165,7 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         if (adapter != null)
             adapter.startListening();
+        recyclerView.setAdapter(adapter);
     }
 
     @Override
@@ -178,7 +187,11 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case R.id.menuHome:
-                startActivity(new Intent(this, MainActivity.class));
+                Intent intent1 = new Intent(MainActivity.this, MainActivity.class);
+                intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent1.putExtra("Email",data);
+                intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent1);
                 break;
         }
 

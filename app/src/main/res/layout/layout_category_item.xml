@@ -6,6 +6,7 @@
     app:cardElevation="10dp">
 
     <RelativeLayout
+        android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="100dp">
 
@@ -30,7 +31,7 @@
             android:gravity="center"
             android:text="My Name"
             android:textColor="@color/back"
-            android:textSize="30dp"
+            android:textSize="20dp"
             android:typeface="monospace" />
 
     </RelativeLayout>
