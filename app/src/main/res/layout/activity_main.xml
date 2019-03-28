@@ -20,8 +20,8 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/editText"
         android:layout_alignParentStart="true"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="-118dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="-160dp"
         android:text="name"
         android:textColor="#FFFFFF"
         android:textStyle="normal"
@@ -32,7 +32,6 @@
         android:id="@+id/iconapp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:contentDescription="@string/desc"
         android:src="@drawable/ic_here" />
@@ -61,6 +60,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="-41dp"
         android:layout_marginEnd="30dp"
+        android:background="@drawable/shape_layout"
         android:ems="10"
         android:hint="@string/seacrh_here"
         android:importantForAutofill="no"
@@ -88,7 +88,8 @@
         android:id="@+id/recycleview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="260dp"
+        android:layout_below="@id/editText"
+        android:layout_marginTop="10dp"
         android:visibility="gone"
         tools:listitem="@layout/layout_category_item"></android.support.v7.widget.RecyclerView>
 

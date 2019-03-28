@@ -239,6 +239,8 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.OnItemC
         detailIntent.putExtra(EXTRA_NAME,clickItem.getName());
         detailIntent.putExtra(EXTRA_DETAIL,clickItem.getDetail());
         detailIntent.putExtra(EXTRA_URL2,clickItem.getImageLink2());
+        detailIntent.putExtra("Email",data);
+
         startActivity(detailIntent);
     }
 }

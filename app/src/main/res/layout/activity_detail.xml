@@ -1,60 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/back"
     android:orientation="vertical"
     tools:context=".DetailActivity">
 
-    <ImageView
-        android:id="@+id/image_view_locate"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
-        android:contentDescription="@string/desc"
-        android:src="@mipmap/ic_launcher_round" />
-
-    <ImageView
-        android:id="@+id/image_view_detail"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_alignBottom="@+id/image_view_locate"
-        android:layout_marginStart="150dp"
-        android:layout_marginTop="20dp"
-        android:contentDescription="@string/desc"
-        android:src="@mipmap/ic_launcher" />
-
-    <TextView
-        android:id="@+id/text_view_location"
-        android:layout_width="250dp"
-        android:layout_height="70dp"
-        android:layout_alignBottom="@+id/image_view_detail"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="62dp"
-        android:layout_marginTop="-51dp"
-        android:layout_marginBottom="-101dp"
-        android:text="@string/locatename"
-        android:textColor="@color/back"
-        android:textSize="28dp"
-        android:textStyle="normal"
-        android:typeface="monospace" />
-
-    <TextView
-        android:id="@+id/text_view_locationdetail"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="500dp"
-        android:layout_alignBottom="@+id/text_view_location"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="9dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="-510dp"
-        android:text="@string/locatedetail"
-        android:textColor="@color/back"
-        android:textSize="20dp"
-        android:textStyle="normal"
-        android:typeface="monospace" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
 
-</RelativeLayout>
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/toolbar" />
+
+        <ImageView
+            android:id="@+id/image_view_locate"
+            android:layout_width="match_parent"
+            android:layout_height="310dp"
+            android:layout_below="@+id/toolbar"
+            android:layout_marginTop="0dp"
+            android:contentDescription="@string/desc"
+            android:src="@drawable/station_1" />
+
+
+        <ImageView
+            android:id="@+id/image_view_detail"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_below="@id/image_view_locate"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:contentDescription="@string/desc"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/text_view_location"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="400dp"
+            android:text="@string/locatename"
+            android:textColor="#FFFFFF"
+            android:textSize="28dp"
+            android:textStyle="normal"
+            android:typeface="monospace" />
+
+        <TextView
+            android:id="@+id/text_view_locationdetail"
+            android:layout_width="match_parent"
+            android:layout_height="700dp"
+            android:layout_below="@+id/image_view_locate"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="138dp"
+            android:text="@string/locatedetail"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp"
+            android:textStyle="normal"
+            android:typeface="monospace" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_view_locationdetail"
+            android:layout_marginTop="-2dp"
+            android:text="Button" />
+
+
+    </RelativeLayout>
+
+</ScrollView>
