@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.GridLayout;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,7 +39,12 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MyAdapter.OnItemClickListener {
+    public  static final String EXTRA_URL = "imageUrl";
+    public  static final String EXTRA_NAME = "locateName";
+    public  static final String EXTRA_DETAIL = "locateDetail";
+    public  static final String EXTRA_URL2 = "imageUrl2";
+
     RecyclerView recyclerView;
     DatabaseReference databaseReference;
     FirebaseRecyclerOptions<CategoryItem> options;
@@ -47,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
     TextView textView;
     ArrayList<CategoryItem> arrayList;
     String data;
+    ImageButton button;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,13 +64,26 @@ public class MainActivity extends AppCompatActivity {
         textView  = (TextView) findViewById(R.id.txt_nameuser);
         data = getIntent().getExtras().getString("Email");
         textView.setText("User : "+data);
-
         recyclerView = (RecyclerView) findViewById(R.id.recycleview);
         editText = (EditText) findViewById(R.id.editText);
+        button = (ImageButton) findViewById(R.id.button);
+
+        //คลิกปุ่ม แล้วค้นหา
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String s = editText.getText().toString();
+                if( s.equals("")) { search(" ");}
+                else  {search(s);}
+
+
+            }
+        });
+        //พิมพ์แล้วค้นหา
         editText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
+                recyclerView.setVisibility(View.GONE);
             }
 
             @Override
@@ -75,8 +95,11 @@ public class MainActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
                 if (!s.toString().isEmpty()) {
                     search(s.toString());
+
+
                 } else {
-                    search("");
+                    search(" ");
+
                 }
             }
         });
@@ -98,8 +121,19 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
+                Picasso.get().load(model.getImageLink()).into(holder.i2, new Callback() {
+                    @Override
+                    public void onSuccess() {
+
+                    }
+
+                    @Override
+                    public void onError(Exception e) {
+                        Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                });
                 holder.t1.setText(model.getName());
-            }
+                holder.t2.setText(model.getDetail());            }
 
             @Override
             public CategoryViewHolder onCreateViewHolder(ViewGroup parent, int i) {
@@ -113,12 +147,12 @@ public class MainActivity extends AppCompatActivity {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(), 1);
         recyclerView.setLayoutManager(gridLayoutManager);
         adapter.startListening();
-       recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(adapter);
+
     }
 
-    private void search(String s) {
-        Query query = databaseReference.orderByChild("name")
-                .startAt(s).endAt(s + "\uf8ff");
+    private void search(String st) {
+        Query query = databaseReference.orderByChild("name").startAt(st).endAt(st+"\uf8ff");
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -132,9 +166,10 @@ public class MainActivity extends AppCompatActivity {
                     MyAdapter myAdapter = new MyAdapter(getApplicationContext(),arrayList);
                     recyclerView.setAdapter(myAdapter);
                     myAdapter.notifyDataSetChanged();
+                    recyclerView.setVisibility(View.VISIBLE);
+                    myAdapter.setOnItemClickListener(MainActivity.this);
 
-
-                }
+                } else { recyclerView.setVisibility(View.GONE); }
             }
 
             @Override
@@ -149,14 +184,13 @@ public class MainActivity extends AppCompatActivity {
         super.onStart();
         if (adapter != null)
             adapter.startListening();
-        recyclerView.setAdapter(adapter);
+
     }
 
     @Override
     protected void onStop() {
         if (adapter != null)
             adapter.stopListening();
-        recyclerView.setAdapter(adapter);
         super.onStop();
     }
 
@@ -165,7 +199,6 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         if (adapter != null)
             adapter.startListening();
-        recyclerView.setAdapter(adapter);
     }
 
     @Override
@@ -196,5 +229,16 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return true;
+    }
+
+    @Override
+    public void OnItemClick(int position) {
+        Intent detailIntent = new Intent(this,DetailActivity.class);
+        CategoryItem clickItem = arrayList.get(position);
+        detailIntent.putExtra(EXTRA_URL,clickItem.getImageLink());
+        detailIntent.putExtra(EXTRA_NAME,clickItem.getName());
+        detailIntent.putExtra(EXTRA_DETAIL,clickItem.getDetail());
+        detailIntent.putExtra(EXTRA_URL2,clickItem.getImageLink2());
+        startActivity(detailIntent);
     }
 }

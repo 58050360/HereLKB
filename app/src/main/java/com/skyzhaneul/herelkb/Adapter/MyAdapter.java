@@ -20,6 +20,16 @@ import java.util.ArrayList;
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyAdapterViewHolder> {
     public Context c;
     public ArrayList<CategoryItem> arrayList;
+    private OnItemClickListener mListener;
+
+    public interface OnItemClickListener {
+        void OnItemClick(int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener){
+
+        mListener = listener;
+    }
 
     public MyAdapter(Context c, ArrayList<CategoryItem> arrayList)
     {
@@ -51,17 +61,35 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyAdapterViewHolde
       CategoryItem categoryItem = arrayList.get(position);
       holder.t1.setText(categoryItem.getName());
         Picasso.get().load(categoryItem.getImageLink()).into(holder.i1);
+        holder.t2.setText(categoryItem.getDetail());
+        Picasso.get().load(categoryItem.getImageLink2()).into(holder.i2);
+
     }
 
     public class MyAdapterViewHolder extends RecyclerView.ViewHolder {
         public TextView t1;
         public ImageView i1;
+        public  TextView t2;
+        public ImageView i2;
 
         public MyAdapterViewHolder(View itemView) {
             super(itemView);
             t1 = (TextView) itemView.findViewById(R.id.name);
             i1 = (ImageView) itemView.findViewById(R.id.image);
+            t2 = (TextView) itemView.findViewById(R.id.detail);
+            i2 = (ImageView) itemView.findViewById(R.id.image2);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(mListener != null){
 
+                        int position = getAdapterPosition();
+                        if(position!=RecyclerView.NO_POSITION){
+                            mListener.OnItemClick(position);
+                        }
+                    }
+                }
+            });
         }
     }
 

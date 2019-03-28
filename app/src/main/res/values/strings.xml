@@ -15,5 +15,9 @@
     <string name="opentime">opentime</string>
     <string name="tel">tel</string>
     <string name="locatename">locatename</string>
+    <string name="locatedetail">locatedetail</string>
+    <string name="locateaddress">locateaddress</string>
+    <string name="locateopentime">locateopentime</string>
+
 
 </resources>
