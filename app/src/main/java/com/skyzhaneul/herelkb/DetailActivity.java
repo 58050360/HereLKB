@@ -13,8 +13,10 @@ import android.widget.TextView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
 
+import static com.skyzhaneul.herelkb.MainActivity.EXTRA_ADDRESS;
 import static com.skyzhaneul.herelkb.MainActivity.EXTRA_DETAIL;
 import static com.skyzhaneul.herelkb.MainActivity.EXTRA_NAME;
+import static com.skyzhaneul.herelkb.MainActivity.EXTRA_TIME;
 import static com.skyzhaneul.herelkb.MainActivity.EXTRA_URL;
 import static com.skyzhaneul.herelkb.MainActivity.EXTRA_URL2;
 
@@ -38,15 +40,21 @@ public class DetailActivity extends AppCompatActivity {
         String locateName = intent.getStringExtra(EXTRA_NAME);
         String locateDetail = intent.getStringExtra(EXTRA_DETAIL);
         String imageUrl2 = intent.getStringExtra(EXTRA_URL2);
+        String locateAddress = intent.getStringExtra(EXTRA_ADDRESS);
+        String locateTime = intent.getStringExtra(EXTRA_TIME);
         ImageView imageView = findViewById(R.id.image_view_detail);
         TextView textView = findViewById(R.id.text_view_location);
         TextView textView1 = findViewById(R.id.text_view_locationdetail);
         ImageView imageView1 = findViewById(R.id.image_view_locate);
+        TextView textView2 = findViewById(R.id.text_view_locationAddress);
+        TextView textView3 = findViewById(R.id.text_view_locationTime);
 
         Picasso.get().load(imageUrl).fit().centerInside().into(imageView);
         textView.setText(locateName);
         textView1.setText(locateDetail);
         Picasso.get().load(imageUrl2).fit().centerInside().into(imageView1);
+        textView2.setText(locateAddress);
+        textView3.setText(locateTime);
 
     }
 

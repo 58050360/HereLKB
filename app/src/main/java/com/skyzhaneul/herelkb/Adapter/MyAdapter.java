@@ -63,6 +63,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyAdapterViewHolde
         Picasso.get().load(categoryItem.getImageLink()).into(holder.i1);
         holder.t2.setText(categoryItem.getDetail());
         Picasso.get().load(categoryItem.getImageLink2()).into(holder.i2);
+        holder.t3.setText(categoryItem.getLocateAddress());
+        holder.t4.setText(categoryItem.getLocateTime());
 
     }
 
@@ -71,6 +73,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyAdapterViewHolde
         public ImageView i1;
         public  TextView t2;
         public ImageView i2;
+        public TextView t3;
+        public TextView t4;
 
         public MyAdapterViewHolder(View itemView) {
             super(itemView);
@@ -78,6 +82,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyAdapterViewHolde
             i1 = (ImageView) itemView.findViewById(R.id.image);
             t2 = (TextView) itemView.findViewById(R.id.detail);
             i2 = (ImageView) itemView.findViewById(R.id.image2);
+            t3 = (TextView) itemView.findViewById(R.id.locateaddress);
+            t4 = (TextView) itemView.findViewById(R.id.locatetime);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

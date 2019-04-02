@@ -44,6 +44,8 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.OnItemC
     public  static final String EXTRA_NAME = "locateName";
     public  static final String EXTRA_DETAIL = "locateDetail";
     public  static final String EXTRA_URL2 = "imageUrl2";
+    public  static final String EXTRA_ADDRESS = "locateAddress";
+    public static final String EXTRA_TIME = "locateTime";
 
     RecyclerView recyclerView;
     DatabaseReference databaseReference;
@@ -133,7 +135,9 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.OnItemC
                     }
                 });
                 holder.t1.setText(model.getName());
-                holder.t2.setText(model.getDetail());            }
+                holder.t2.setText(model.getDetail());
+                holder.t3.setText(model.getLocateAddress());
+                holder.t4.setText(model.getLocateTime());       }
 
             @Override
             public CategoryViewHolder onCreateViewHolder(ViewGroup parent, int i) {
@@ -239,6 +243,8 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.OnItemC
         detailIntent.putExtra(EXTRA_NAME,clickItem.getName());
         detailIntent.putExtra(EXTRA_DETAIL,clickItem.getDetail());
         detailIntent.putExtra(EXTRA_URL2,clickItem.getImageLink2());
+        detailIntent.putExtra(EXTRA_ADDRESS,clickItem.getLocateAddress());
+        detailIntent.putExtra(EXTRA_TIME,clickItem.getLocateTime());
         detailIntent.putExtra("Email",data);
 
         startActivity(detailIntent);
