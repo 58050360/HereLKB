@@ -46,6 +46,9 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.OnItemC
     public  static final String EXTRA_URL2 = "imageUrl2";
     public  static final String EXTRA_ADDRESS = "locateAddress";
     public static final String EXTRA_TIME = "locateTime";
+    public static final String EXTRA_TEL = "locateTel";
+    public static final String EXTRA_URL3 = "imageUrl3";
+    public static final String EXTRA_URL4 = "imageUrl4";
 
     RecyclerView recyclerView;
     DatabaseReference databaseReference;
@@ -56,6 +59,8 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.OnItemC
     ArrayList<CategoryItem> arrayList;
     String data;
     ImageButton button;
+    private boolean mLocationPermissionGranted = false ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -137,7 +142,32 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.OnItemC
                 holder.t1.setText(model.getName());
                 holder.t2.setText(model.getDetail());
                 holder.t3.setText(model.getLocateAddress());
-                holder.t4.setText(model.getLocateTime());       }
+                holder.t4.setText(model.getLocateTime());
+                holder.t5.setText(model.getLocateTel());
+                Picasso.get().load(model.getImageLink()).into(holder.i3, new Callback() {
+                    @Override
+                    public void onSuccess() {
+
+                    }
+
+                    @Override
+                    public void onError(Exception e) {
+                        Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                });
+                Picasso.get().load(model.getImageLink()).into(holder.i4, new Callback() {
+                    @Override
+                    public void onSuccess() {
+
+                    }
+
+                    @Override
+                    public void onError(Exception e) {
+                        Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                });
+
+            }
 
             @Override
             public CategoryViewHolder onCreateViewHolder(ViewGroup parent, int i) {
@@ -245,6 +275,10 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.OnItemC
         detailIntent.putExtra(EXTRA_URL2,clickItem.getImageLink2());
         detailIntent.putExtra(EXTRA_ADDRESS,clickItem.getLocateAddress());
         detailIntent.putExtra(EXTRA_TIME,clickItem.getLocateTime());
+        detailIntent.putExtra(EXTRA_TEL,clickItem.getLocateTel());
+        detailIntent.putExtra(EXTRA_URL3,clickItem.getImageLink3());
+        detailIntent.putExtra(EXTRA_URL4,clickItem.getImageLink4());
+
         detailIntent.putExtra("Email",data);
 
         startActivity(detailIntent);

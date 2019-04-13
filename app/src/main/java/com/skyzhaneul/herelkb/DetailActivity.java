@@ -16,9 +16,12 @@ import com.squareup.picasso.Picasso;
 import static com.skyzhaneul.herelkb.MainActivity.EXTRA_ADDRESS;
 import static com.skyzhaneul.herelkb.MainActivity.EXTRA_DETAIL;
 import static com.skyzhaneul.herelkb.MainActivity.EXTRA_NAME;
+import static com.skyzhaneul.herelkb.MainActivity.EXTRA_TEL;
 import static com.skyzhaneul.herelkb.MainActivity.EXTRA_TIME;
 import static com.skyzhaneul.herelkb.MainActivity.EXTRA_URL;
 import static com.skyzhaneul.herelkb.MainActivity.EXTRA_URL2;
+import static com.skyzhaneul.herelkb.MainActivity.EXTRA_URL3;
+import static com.skyzhaneul.herelkb.MainActivity.EXTRA_URL4;
 
 public class DetailActivity extends AppCompatActivity {
     String data;
@@ -42,12 +45,18 @@ public class DetailActivity extends AppCompatActivity {
         String imageUrl2 = intent.getStringExtra(EXTRA_URL2);
         String locateAddress = intent.getStringExtra(EXTRA_ADDRESS);
         String locateTime = intent.getStringExtra(EXTRA_TIME);
+        String locateTel = intent.getStringExtra(EXTRA_TEL);
+        String imageUrl3 = intent.getStringExtra(EXTRA_URL3);
+        String imageUrl4 = intent.getStringExtra(EXTRA_URL4);
         ImageView imageView = findViewById(R.id.image_view_detail);
         TextView textView = findViewById(R.id.text_view_location);
         TextView textView1 = findViewById(R.id.text_view_locationdetail);
         ImageView imageView1 = findViewById(R.id.image_view_locate);
         TextView textView2 = findViewById(R.id.text_view_locationAddress);
         TextView textView3 = findViewById(R.id.text_view_locationTime);
+        TextView textView4 = findViewById(R.id.text_view_locationTel);
+        ImageView imageView2 = findViewById(R.id.image_view_locate2);
+        ImageView imageView3 = findViewById(R.id.image_view_locate3);
 
         Picasso.get().load(imageUrl).fit().centerInside().into(imageView);
         textView.setText(locateName);
@@ -55,6 +64,9 @@ public class DetailActivity extends AppCompatActivity {
         Picasso.get().load(imageUrl2).fit().centerInside().into(imageView1);
         textView2.setText(locateAddress);
         textView3.setText(locateTime);
+        textView4.setText(locateTel);
+        Picasso.get().load(imageUrl3).fit().centerInside().into(imageView2);
+        Picasso.get().load(imageUrl4).fit().centerInside().into(imageView3);
 
     }
 

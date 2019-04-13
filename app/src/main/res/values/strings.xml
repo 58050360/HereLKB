@@ -1,4 +1,5 @@
 <resources>
+    <string name="google_map_api_key">AIzaSyBh7RqwcekrVdGZEiFqcEDma3WVG3BeO3k</string>
     <string name="app_name">HereLKB</string>
     <string name="desc">image</string>
     <string name="action_settings">Settings</string>
@@ -19,5 +20,6 @@
     <string name="locateaddress">locateaddress</string>
     <string name="locateopentime">locateopentime</string>
 
+    <string name="locatetel">locatetel</string>
 
 </resources>

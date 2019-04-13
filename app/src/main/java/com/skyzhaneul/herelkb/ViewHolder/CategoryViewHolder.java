@@ -15,6 +15,9 @@ public class CategoryViewHolder extends RecyclerView.ViewHolder {
     public ImageView i2;
     public TextView t3;
     public  TextView t4;
+    public TextView t5;
+    public ImageView i3;
+    public ImageView i4;
 
     public CategoryViewHolder(View itemView) {
         super(itemView);
@@ -24,5 +27,8 @@ public class CategoryViewHolder extends RecyclerView.ViewHolder {
         i2 = (ImageView) itemView.findViewById(R.id.image2);
         t3 = (TextView) itemView.findViewById(R.id.locateaddress);
         t4 = (TextView) itemView.findViewById(R.id.locatetime);
+        t5 = (TextView) itemView.findViewById(R.id.locatetel);
+        i3 = (ImageView) itemView.findViewById(R.id.image3);
+        i4 = (ImageView) itemView.findViewById(R.id.image4);
     }
 }
