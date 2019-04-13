@@ -36,7 +36,7 @@
             android:layout_height="100dp"
             android:layout_below="@id/image_view_locate"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="37dp"
             android:contentDescription="@string/desc"
             android:src="@mipmap/ic_launcher" />
 
@@ -44,7 +44,7 @@
             android:id="@+id/image_view_locate2"
             android:layout_width="match_parent"
             android:layout_height="310dp"
-            android:layout_below="@+id/text_view_locationTime"
+            android:layout_below="@+id/text_view_locationdetail"
             android:layout_marginTop="0dp"
             android:contentDescription="@string/desc"
             android:src="@drawable/station_1" />
@@ -54,49 +54,49 @@
             android:layout_width="match_parent"
             android:layout_height="310dp"
             android:layout_below="@+id/image_view_locate2"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:contentDescription="@string/desc"
             android:src="@drawable/station_1" />
 
         <TextView
             android:id="@+id/text_view_location"
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="30dp"
             android:layout_alignParentStart="true"
             android:layout_centerHorizontal="true"
             android:layout_marginStart="120dp"
-            android:layout_marginTop="400dp"
+            android:layout_marginTop="380dp"
             android:text="@string/locatename"
-            android:textColor="#FFFFFF"
-            android:textSize="28dp"
+            android:textColor="@color/back"
+            android:textSize="18dp"
             android:textStyle="normal"
             android:typeface="monospace" />
 
         <TextView
             android:id="@+id/text_view_locationdetail"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="250dp"
             android:layout_below="@+id/image_view_locate"
             android:layout_alignParentStart="true"
             android:layout_marginStart="9dp"
-            android:layout_marginTop="138dp"
+            android:layout_marginTop="155dp"
             android:text="@string/locatedetail"
             android:textColor="#FFFFFF"
-            android:textSize="20dp"
+            android:textSize="18dp"
             android:textStyle="normal"
             android:typeface="monospace" />
 
         <TextView
             android:id="@+id/text_view_locationAddress"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_below="@+id/text_view_locationdetail"
+            android:layout_height="40dp"
+            android:layout_below="@+id/text_view_location"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="9dp"
+            android:layout_marginStart="120dp"
             android:layout_marginTop="0dp"
             android:text="@string/locateaddress"
             android:textColor="#FFFFFF"
-            android:textSize="20dp"
+            android:textSize="15dp"
             android:textStyle="normal"
             android:typeface="monospace" />
 
@@ -104,27 +104,28 @@
         <TextView
             android:id="@+id/text_view_locationTel"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="20dp"
             android:layout_below="@+id/text_view_locationAddress"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="9dp"
-            android:layout_marginTop="0dp"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="4dp"
             android:text="@string/locatetel"
             android:textColor="#FFFFFF"
-            android:textSize="20dp"
+            android:textSize="15dp"
             android:textStyle="normal"
             android:typeface="monospace" />
+
         <TextView
             android:id="@+id/text_view_locationTime"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="20dp"
             android:layout_below="@+id/text_view_locationTel"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="9dp"
-            android:layout_marginTop="0dp"
+            android:layout_marginStart="120dp"
+            android:layout_marginTop="3dp"
             android:text="@string/locateopentime"
             android:textColor="#FFFFFF"
-            android:textSize="20dp"
+            android:textSize="15dp"
             android:textStyle="normal"
             android:typeface="monospace" />
 
