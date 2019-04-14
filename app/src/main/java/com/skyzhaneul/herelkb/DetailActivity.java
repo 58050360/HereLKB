@@ -14,6 +14,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.squareup.picasso.Picasso;
 
 import static com.skyzhaneul.herelkb.MainActivity.EXTRA_ADDRESS;
+import static com.skyzhaneul.herelkb.MainActivity.EXTRA_CATEGORY;
 import static com.skyzhaneul.herelkb.MainActivity.EXTRA_DETAIL;
 import static com.skyzhaneul.herelkb.MainActivity.EXTRA_NAME;
 import static com.skyzhaneul.herelkb.MainActivity.EXTRA_TEL;
@@ -48,6 +49,7 @@ public class DetailActivity extends AppCompatActivity {
         String locateTel = intent.getStringExtra(EXTRA_TEL);
         String imageUrl3 = intent.getStringExtra(EXTRA_URL3);
         String imageUrl4 = intent.getStringExtra(EXTRA_URL4);
+        String locateCategory = intent.getStringExtra(EXTRA_CATEGORY);
         ImageView imageView = findViewById(R.id.image_view_detail);
         TextView textView = findViewById(R.id.text_view_location);
         TextView textView1 = findViewById(R.id.text_view_locationdetail);
@@ -57,7 +59,7 @@ public class DetailActivity extends AppCompatActivity {
         TextView textView4 = findViewById(R.id.text_view_locationTel);
         ImageView imageView2 = findViewById(R.id.image_view_locate2);
         ImageView imageView3 = findViewById(R.id.image_view_locate3);
-
+        TextView textView5 = findViewById(R.id.text_view_locationCategory);
         Picasso.get().load(imageUrl).fit().centerInside().into(imageView);
         textView.setText(locateName);
         textView1.setText(locateDetail);
@@ -67,6 +69,8 @@ public class DetailActivity extends AppCompatActivity {
         textView4.setText(locateTel);
         Picasso.get().load(imageUrl3).fit().centerInside().into(imageView2);
         Picasso.get().load(imageUrl4).fit().centerInside().into(imageView3);
+        textView5.setText(locateCategory);
+
 
     }
 

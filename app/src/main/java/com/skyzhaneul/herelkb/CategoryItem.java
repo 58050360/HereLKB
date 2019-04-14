@@ -2,10 +2,10 @@ package com.skyzhaneul.herelkb;
 
 public class CategoryItem {
 
-    public String name, imageLink, detail, imageLink2, locateAddress, locateTime,locateTel,imageLink3,imageLink4;
+    public String name, imageLink, detail, imageLink2, locateAddress, locateTime,locateTel,imageLink3,imageLink4,category;
 
     public CategoryItem(String name, String imageLink, String detail, String imageLink2, String locateAddress, String locateTime,
-                        String locateTel,String imageLink3,String imageLink4) {
+                        String locateTel,String imageLink3,String imageLink4,String category) {
         this.name = name;
         this.imageLink = imageLink;
         this.detail = detail;
@@ -15,10 +15,19 @@ public class CategoryItem {
         this.locateTel = locateTel;
         this.imageLink3 = imageLink3;
         this.imageLink4 = imageLink4;
+        this.category = category;
     }
 
 
     public CategoryItem() {
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getLocateTel() {

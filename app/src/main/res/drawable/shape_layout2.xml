@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+ <stroke android:color="#FFFFFF" android:width="0.5dp" />
+    <corners android:radius="10dp"/>
+    <solid android:color="@color/toolbar" />
+
+    <!--<gradient-->
+        <!--android:startColor="@color/colorbutton2"-->
+        <!--android:endColor="@color/toolbar"-->
+        <!--android:angle="-270" />-->
+</shape>

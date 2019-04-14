@@ -18,6 +18,7 @@ public class CategoryViewHolder extends RecyclerView.ViewHolder {
     public TextView t5;
     public ImageView i3;
     public ImageView i4;
+    public TextView t6;
 
     public CategoryViewHolder(View itemView) {
         super(itemView);
@@ -30,5 +31,6 @@ public class CategoryViewHolder extends RecyclerView.ViewHolder {
         t5 = (TextView) itemView.findViewById(R.id.locatetel);
         i3 = (ImageView) itemView.findViewById(R.id.image3);
         i4 = (ImageView) itemView.findViewById(R.id.image4);
+        t6 = (TextView) itemView.findViewById(R.id.locatecategory);
     }
 }

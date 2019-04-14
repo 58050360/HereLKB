@@ -1,11 +1,9 @@
 package com.skyzhaneul.herelkb;
 
-import android.app.DownloadManager;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -18,7 +16,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.GridLayout;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.OnItemC
     public static final String EXTRA_TEL = "locateTel";
     public static final String EXTRA_URL3 = "imageUrl3";
     public static final String EXTRA_URL4 = "imageUrl4";
+    public static final String EXTRA_CATEGORY = "locateCategory";
 
     RecyclerView recyclerView;
     DatabaseReference databaseReference;
@@ -58,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.OnItemC
     TextView textView;
     ArrayList<CategoryItem> arrayList;
     String data;
-    ImageButton button;
+    ImageButton button_search,button_transport,button_emergency,button_place, button_food,button_hotel;
     private boolean mLocationPermissionGranted = false ;
 
     @Override
@@ -73,10 +71,70 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.OnItemC
         textView.setText("User : "+data);
         recyclerView = (RecyclerView) findViewById(R.id.recycleview);
         editText = (EditText) findViewById(R.id.editText);
-        button = (ImageButton) findViewById(R.id.button);
+        button_search = (ImageButton) findViewById(R.id.button_search);
+        button_transport = (ImageButton) findViewById(R.id.button_transport);
+        button_emergency = (ImageButton) findViewById(R.id.button_emergency);
+        button_place = (ImageButton) findViewById(R.id.button_place);
+        button_food = (ImageButton) findViewById(R.id.button_food);
+        button_hotel = (ImageButton) findViewById(R.id.button_hotel);
+
+        button_transport.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent_transport = new Intent(MainActivity.this, MainActivity.class);
+                intent_transport.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent_transport.putExtra("Email",data);
+                intent_transport.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent_transport);
+            }
+        });
+
+        button_emergency.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent_emergency = new Intent(MainActivity.this, MainActivity.class);
+                intent_emergency.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent_emergency.putExtra("Email",data);
+                intent_emergency.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent_emergency);
+            }
+        });
+
+        button_place.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent_place = new Intent(MainActivity.this, MainActivity.class);
+                intent_place.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent_place.putExtra("Email",data);
+                intent_place.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent_place);
+            }
+        });
+
+        button_food.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent_food = new Intent(MainActivity.this, FoodActivity.class);
+                intent_food.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent_food.putExtra("Email",data);
+                intent_food.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent_food);
+            }
+        });
+
+        button_hotel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent_hotel = new Intent(MainActivity.this, MainActivity.class);
+                intent_hotel.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent_hotel.putExtra("Email",data);
+                intent_hotel.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent_hotel);
+            }
+        });
 
         //คลิกปุ่ม แล้วค้นหา
-        button.setOnClickListener(new View.OnClickListener() {
+        button_search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String s = editText.getText().toString();
@@ -144,6 +202,7 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.OnItemC
                 holder.t3.setText(model.getLocateAddress());
                 holder.t4.setText(model.getLocateTime());
                 holder.t5.setText(model.getLocateTel());
+                holder.t6.setText(model.getCategory());
                 Picasso.get().load(model.getImageLink()).into(holder.i3, new Callback() {
                     @Override
                     public void onSuccess() {
@@ -278,6 +337,7 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.OnItemC
         detailIntent.putExtra(EXTRA_TEL,clickItem.getLocateTel());
         detailIntent.putExtra(EXTRA_URL3,clickItem.getImageLink3());
         detailIntent.putExtra(EXTRA_URL4,clickItem.getImageLink4());
+        detailIntent.putExtra(EXTRA_CATEGORY,clickItem.getCategory());
 
         detailIntent.putExtra("Email",data);
 

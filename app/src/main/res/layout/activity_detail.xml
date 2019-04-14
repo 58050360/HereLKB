@@ -129,6 +129,20 @@
             android:textStyle="normal"
             android:typeface="monospace" />
 
+        <TextView
+            android:id="@+id/text_view_locationCategory"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:layout_below="@+id/text_view_locationdetail"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="0dp"
+            android:text="@string/locateopentime"
+            android:textColor="@color/back"
+            android:textSize="15dp"
+            android:textStyle="normal"
+            android:typeface="monospace" />
+
         <Button
             android:id="@+id/button2"
             android:layout_width="wrap_content"
