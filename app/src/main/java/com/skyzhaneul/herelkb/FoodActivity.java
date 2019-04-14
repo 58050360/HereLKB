@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -55,6 +56,7 @@ public class FoodActivity extends AppCompatActivity implements MyAdapter.OnItemC
     String data;
     ImageButton button_cafe,button_restaurants;
     private boolean mLocationPermissionGranted = false ;
+    TextView menufood;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,11 +65,17 @@ public class FoodActivity extends AppCompatActivity implements MyAdapter.OnItemC
         arrayList = new ArrayList<>();
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null)
+        {   getSupportActionBar().setTitle("  ");
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
         data = getIntent().getExtras().getString("Email");
         recyclerView = (RecyclerView) findViewById(R.id.recycleview_food);
         button_cafe = (ImageButton) findViewById(R.id.button_cafe);
         button_restaurants = (ImageButton) findViewById(R.id.button_restaurants);
-
+        menufood = (TextView) findViewById(R.id.txt_menu);
 
         //คลิกปุ่ม แล้วค้นหา cafe
         button_cafe.setOnClickListener(new View.OnClickListener() {
@@ -75,6 +83,7 @@ public class FoodActivity extends AppCompatActivity implements MyAdapter.OnItemC
             public void onClick(View view) {
 
                 searchcafe();
+                menufood.setText("Cafe List");
 
 
             }
@@ -85,7 +94,7 @@ public class FoodActivity extends AppCompatActivity implements MyAdapter.OnItemC
             public void onClick(View view) {
 
                 searchrestaurants();
-
+                menufood.setText("Restaurants List");
 
             }
         });
@@ -267,6 +276,9 @@ public class FoodActivity extends AppCompatActivity implements MyAdapter.OnItemC
                 intent1.putExtra("Email",data);
                 intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent1);
+                break;
+            case android.R.id.home:
+                finish();
                 break;
         }
 
