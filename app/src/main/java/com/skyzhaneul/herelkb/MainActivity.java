@@ -15,6 +15,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -58,6 +59,7 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.OnItemC
     String data;
     ImageButton button_search,button_transport,button_emergency,button_place, button_food,button_hotel;
     private boolean mLocationPermissionGranted = false ;
+    Button button_pr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +79,7 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.OnItemC
         button_place = (ImageButton) findViewById(R.id.button_place);
         button_food = (ImageButton) findViewById(R.id.button_food);
         button_hotel = (ImageButton) findViewById(R.id.button_hotel);
+        button_pr = (Button) findViewById(R.id.pr_action);
 
         button_transport.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,6 +126,17 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.OnItemC
         });
 
         button_hotel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent_hotel = new Intent(MainActivity.this, HotelActivity.class);
+                intent_hotel.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent_hotel.putExtra("Email",data);
+                intent_hotel.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent_hotel);
+            }
+        });
+
+        button_pr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent_hotel = new Intent(MainActivity.this, MainActivity.class);
