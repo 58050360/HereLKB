@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.OnItemC
         button_place.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent_place = new Intent(MainActivity.this, MainActivity.class);
+                Intent intent_place = new Intent(MainActivity.this, PlaceActivity.class);
                 intent_place.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent_place.putExtra("Email",data);
                 intent_place.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -197,6 +197,7 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.OnItemC
                         Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
                     }
                 });
+
                 holder.t1.setText(model.getName());
                 holder.t2.setText(model.getDetail());
                 holder.t3.setText(model.getLocateAddress());

@@ -42,6 +42,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
     }
 
+
     @Override
     protected void onStart() {
         super.onStart();
