@@ -8,4 +8,14 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+
+    <style name="Spinner" parent="Widget.AppCompat.Light.DropDownItem.Spinner">
+        <item name="android:paddingStart">0dp</item>
+        <item name="android:paddingEnd">0dp</item>
+        <item name="android:backgroundTint">#ffcccc</item>
+        <!-- Default color for the dropdown arrow and line -->
+        <item name="colorControlHighlight">@color/back</item>
+        <item name="android:textColor">@color/back</item>
+        <item name="android:textSize">18sp</item>
+    </style>
 </resources>

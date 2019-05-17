@@ -139,7 +139,7 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.OnItemC
         button_pr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent_hotel = new Intent(MainActivity.this, MainActivity.class);
+                Intent intent_hotel = new Intent(MainActivity.this, PublicRelationsActivity.class);
                 intent_hotel.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent_hotel.putExtra("Email",data);
                 intent_hotel.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);

@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffe6e6"
+    tools:context=".PublicRelationsActivity">
+
+    <RelativeLayout
+        android:id="@+id/content_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/toolbar" />
+
+
+        <TextView
+            android:id="@+id/txt_pr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/toolbar"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:text="Public Relations"
+            android:textColor="@color/back"
+            android:textSize="20dp"
+            android:textStyle="normal"
+            android:typeface="monospace" />
+
+        <TextView
+            android:id="@+id/txt_pr_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_pr"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:paddingTop="10dp"
+            android:text="Location Name"
+            android:textColor="@color/back"
+            android:textSize="13dp"
+            android:textStyle="normal"
+            android:typeface="monospace" />
+
+        <EditText
+
+            android:id="@+id/editTextName"
+            android:layout_width="320dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/txt_pr_name"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="11dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="0dp"
+            android:background="@drawable/shape_layout5"
+            android:ems="10"
+            android:hint="Enter Location Name"
+            android:importantForAutofill="no"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="10dp"
+            android:textColor="@color/back"
+            android:textColorHint="@color/colorbutton2"
+            android:typeface="monospace"
+            tools:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/txt_category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/editTextName"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:text="Select Category"
+            android:textColor="@color/back"
+            android:textSize="13dp"
+            android:textStyle="normal"
+            android:typeface="monospace" />
+
+
+        <android.support.v7.widget.AppCompatSpinner
+            android:id="@+id/spinnerCategory"
+            style="@style/Widget.AppCompat.Spinner.Underlined"
+            android:layout_width="320dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_category"
+            android:layout_marginStart="11dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="0dp"
+            android:entries="@array/category"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="10dp"
+            android:spinnerMode="dropdown"
+            android:theme="@style/Spinner"
+            android:typeface="monospace" />
+
+        <TextView
+            android:id="@+id/txt_pr_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/spinnerCategory"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="20dp"
+            android:paddingTop="10dp"
+            android:text="Location Address"
+            android:textColor="@color/back"
+            android:textSize="13dp"
+            android:textStyle="normal"
+            android:typeface="monospace" />
+
+        <EditText
+
+            android:id="@+id/editTextAddress"
+            android:layout_width="320dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/txt_pr_address"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="11dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="0dp"
+            android:background="@drawable/shape_layout5"
+            android:ems="10"
+            android:hint="Enter Location Address"
+            android:importantForAutofill="no"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="10dp"
+            android:textColor="@color/back"
+            android:textColorHint="@color/colorbutton2"
+            android:typeface="monospace"
+            tools:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/txt_pr_open"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/editTextAddress"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="20dp"
+            android:paddingTop="10dp"
+            android:text="Location OpenTime"
+            android:textColor="@color/back"
+            android:textSize="13dp"
+            android:textStyle="normal"
+            android:typeface="monospace" />
+
+        <EditText
+
+            android:id="@+id/editTextOpen"
+            android:layout_width="320dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/txt_pr_open"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="11dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="0dp"
+            android:background="@drawable/shape_layout5"
+            android:ems="10"
+            android:hint="Enter Location Time "
+            android:importantForAutofill="no"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="10dp"
+            android:textColor="@color/back"
+            android:textColorHint="@color/colorbutton2"
+            android:typeface="monospace"
+            tools:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/txt_pr_c_open"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/editTextOpen"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="20dp"
+            android:paddingTop="10dp"
+            android:text="*ตัวอย่าง วัน จ.-ศ. เวลา 10.00-22.00 น.*"
+            android:textColor="@color/back"
+            android:textSize="13dp"
+            android:textStyle="normal"
+            android:typeface="monospace" />
+
+        <TextView
+            android:id="@+id/txt_pr_tel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txt_pr_c_open"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="20dp"
+            android:paddingTop="10dp"
+            android:text="Location Tel."
+            android:textColor="@color/back"
+            android:textSize="13dp"
+            android:textStyle="normal"
+            android:typeface="monospace" />
+
+        <EditText
+
+            android:id="@+id/editTextTel"
+            android:layout_width="320dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/txt_pr_tel"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="11dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="0dp"
+            android:background="@drawable/shape_layout5"
+            android:ems="10"
+            android:hint="Enter Location Tel. "
+            android:importantForAutofill="no"
+            android:inputType="phone"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="10dp"
+            android:textColor="@color/back"
+            android:textColorHint="@color/colorbutton2"
+            android:typeface="monospace"
+            tools:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/txt_pr_latitude"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/editTextTel"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="20dp"
+            android:paddingTop="10dp"
+            android:text="Location Latitude"
+            android:textColor="@color/back"
+            android:textSize="13dp"
+            android:textStyle="normal"
+            android:typeface="monospace" />
+
+        <EditText
+
+            android:id="@+id/editTextLatitude"
+            android:layout_width="320dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/txt_pr_latitude"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="11dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="0dp"
+            android:background="@drawable/shape_layout5"
+            android:ems="10"
+            android:hint="Enter Location Latitude"
+            android:importantForAutofill="no"
+            android:inputType="numberDecimal"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="10dp"
+            android:textColor="@color/back"
+            android:textColorHint="@color/colorbutton2"
+            android:typeface="monospace"
+            tools:textSize="18sp" />
+
+
+        <TextView
+            android:id="@+id/txt_pr_longtitude"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/editTextLatitude"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="20dp"
+            android:paddingTop="10dp"
+            android:text="Location Longtitude"
+            android:textColor="@color/back"
+            android:textSize="13dp"
+            android:textStyle="normal"
+            android:typeface="monospace" />
+
+        <EditText
+
+            android:id="@+id/editTextLongtitude"
+            android:layout_width="320dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/txt_pr_longtitude"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="11dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="0dp"
+            android:background="@drawable/shape_layout5"
+            android:ems="10"
+            android:hint="Enter Location Longtitude"
+            android:importantForAutofill="no"
+            android:inputType="numberDecimal"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="10dp"
+            android:textColor="@color/back"
+            android:textColorHint="@color/colorbutton2"
+            android:typeface="monospace"
+            tools:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/txt_pr_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/editTextLongtitude"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="20dp"
+            android:paddingTop="10dp"
+            android:text="Location Detail"
+            android:textColor="@color/back"
+            android:textSize="13dp"
+            android:textStyle="normal"
+            android:typeface="monospace" />
+
+        <EditText
+
+            android:id="@+id/editTextDetail"
+            android:layout_width="320dp"
+            android:layout_height="150dp"
+            android:layout_below="@+id/txt_pr_detail"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="11dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="0dp"
+            android:background="@drawable/shape_layout5"
+            android:ems="10"
+            android:gravity="top|left"
+            android:hint="Enter Location Detail"
+            android:importantForAutofill="no"
+            android:inputType="textMultiLine"
+            android:lines="8"
+            android:maxLines="10"
+            android:minLines="6"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
+            android:paddingRight="20dp"
+            android:paddingBottom="10dp"
+            android:scrollbars="vertical"
+            android:textColor="@color/back"
+            android:textColorHint="@color/colorbutton2"
+            android:typeface="monospace"
+            tools:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/txt_pr_imagelogo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/editTextDetail"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="20dp"
+            android:paddingTop="10dp"
+            android:text="Location Image Logo"
+            android:textColor="@color/back"
+            android:textSize="13dp"
+            android:textStyle="normal"
+            android:typeface="monospace" />
+
+        <ImageView
+            android:id="@+id/image_logo"
+            android:layout_width="120dp"
+            android:layout_height="80dp"
+           android:layout_marginStart="20dp"
+            android:layout_below="@id/txt_pr_imagelogo"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/shape_layout3"
+            app:srcCompat="@drawable/ic_action_addimage" />
+
+        <TextView
+            android:id="@+id/txt_pr_image"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/image_logo"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="20dp"
+            android:paddingTop="10dp"
+            android:text="Location Image"
+            android:textColor="@color/back"
+            android:textSize="13dp"
+            android:textStyle="normal"
+            android:typeface="monospace" />
+
+        <ImageView
+            android:id="@+id/image_1"
+            android:layout_width="110dp"
+            android:layout_height="90dp"
+            android:layout_marginStart="20dp"
+            android:layout_below="@id/txt_pr_image"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/shape_layout3"
+            app:srcCompat="@drawable/ic_action_addimage" />
+
+        <ImageView
+            android:id="@+id/image_2"
+            android:layout_width="110dp"
+            android:layout_height="90dp"
+            android:layout_marginStart="5dp"
+            android:layout_below="@id/txt_pr_image"
+            android:layout_toEndOf="@+id/image_1"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/shape_layout2"
+            app:srcCompat="@drawable/ic_action_addimage" />
+
+        <ImageView
+            android:id="@+id/image_3"
+            android:layout_width="110dp"
+            android:layout_height="90dp"
+            android:layout_marginStart="5dp"
+            android:layout_below="@id/txt_pr_image"
+            android:layout_toEndOf="@+id/image_2"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/shape_layout3"
+            app:srcCompat="@drawable/ic_action_addimage" />
+
+
+        <Button
+            android:id="@+id/button_add"
+            style="@android:style/Widget.Holo.Button.Inset"
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:layout_below="@+id/image_1"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/shape_layout4"
+            android:drawableLeft="@drawable/ic_action_send"
+            android:drawablePadding="-20dp"
+            android:paddingLeft="10dp"
+            android:text="Add Public Relations"
+            android:textColor="#FFFFFF"
+            android:textStyle="normal|bold"
+            android:typeface="monospace"
+            tools:textSize="18sp" />
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:visibility="gone"
+            android:id="@+id/progressBar"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+
+</ScrollView>
