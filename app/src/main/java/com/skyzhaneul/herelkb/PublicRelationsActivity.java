@@ -1,31 +1,46 @@
 package com.skyzhaneul.herelkb;
 
+import android.Manifest;
+import android.content.ContentResolver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.net.Uri;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.text.Html;
+import android.text.method.LinkMovementMethod;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
@@ -34,20 +49,22 @@ import java.util.Calendar;
 import java.util.Date;
 
 
-public class PublicRelationsActivity extends AppCompatActivity {
+public class PublicRelationsActivity extends AppCompatActivity implements LocationListener {
 
     private static final int CHOSE_IMAGE = 101;
     String user;
     private boolean mLocationPermissionGranted = false;
     EditText editTextName, editTextAddress, editTextOpen, editTextTel, editTextDetail, editTextLatitude, editTextLongtitude;
     Spinner spinner;
-    Button button_add;
+    Button button_add, button_upload, button_addlalong;
     DatabaseReference database_Pr;
-    ImageView image_logo, image_1, image_2, image_3;
+    ImageView imagepick;
     Uri uriImage;
     ProgressBar progressBar;
     public String imagename;
     FirebaseAuth mAuth;
+    TextView textView, textView2;
+    private LocationManager locationManager;
 
 
     @Override
@@ -75,28 +92,55 @@ public class PublicRelationsActivity extends AppCompatActivity {
         editTextLongtitude = (EditText) findViewById(R.id.editTextLongtitude);
         spinner = (Spinner) findViewById(R.id.spinnerCategory);
         button_add = (Button) findViewById(R.id.button_add);
-        image_logo = (ImageView) findViewById(R.id.image_logo);
-        image_1 = (ImageView) findViewById(R.id.image_1);
-        image_2 = (ImageView) findViewById(R.id.image_2);
-        image_3 = (ImageView) findViewById(R.id.image_3);
+        button_upload = (Button) findViewById(R.id.button_upload);
+        button_addlalong = (Button) findViewById(R.id.button_addlalong);
+        imagepick = (ImageView) findViewById(R.id.image_logo);
+        textView = (TextView) findViewById(R.id.txt_pr_image);
+        textView2 = (TextView) findViewById(R.id.txt_pr_image2);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
+
+        locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                        != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        final Location location = locationManager.getLastKnownLocation(locationManager.NETWORK_PROVIDER);
 
         button_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                upLoadImageToFirebaseStorage();
                 addPRlist();
 
             }
         });
-        image_logo.setOnClickListener(new View.OnClickListener() {
+        imagepick.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 showImageChoser();
             }
         });
-
+        button_upload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { if (uriImage != null) {
+                upLoadImageToFirebaseStorage(); } else{ Toast.makeText(PublicRelationsActivity.this,"No file selected",Toast.LENGTH_LONG).show();}
+            }
+        });
+        button_addlalong.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onLocationChanged(location);
+            }
+        });
     }
 
     @Override
@@ -107,35 +151,53 @@ public class PublicRelationsActivity extends AppCompatActivity {
 
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uriImage);
-                image_logo.setImageBitmap(bitmap);
+                imagepick.setImageBitmap(bitmap);
 
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
+private String getFileExtension(Uri uri){
+    ContentResolver cR = getContentResolver();
+    MimeTypeMap mime = MimeTypeMap.getSingleton();
+    return mime.getExtensionFromMimeType(cR.getType(uri));
+
+}
 
     private void upLoadImageToFirebaseStorage() {
         String name = editTextName.getText().toString().trim();
-        imagename = name+"1" ;
+        Date ts = Calendar.getInstance().getTime();
+        String ts1 =  ts.toString();
+        imagename = name+ts1 ;
         StorageReference imageRef =
-                FirebaseStorage.getInstance().getReference("image/" + imagename  + ".jpg");
+                FirebaseStorage.getInstance().getReference("image/" + imagename  + "."+ getFileExtension(uriImage));
 
         if (uriImage != null) {
             progressBar.setVisibility(View.VISIBLE);
             imageRef.putFile(uriImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    progressBar.setVisibility(View.GONE);
+                    Task<Uri> result =  taskSnapshot.getMetadata().getReference().getDownloadUrl();
+                    result.addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                         String  downloadLink = uri.toString();
+                          textView.setText(Html.fromHtml(downloadLink+" Success"));
+                          textView.setMovementMethod(LinkMovementMethod.getInstance());
 
-                    String imagelogoUrl = taskSnapshot.getMetadata().getReference().getDownloadUrl().toString();
-                    imagename = imagelogoUrl;
+                        }
+
+
+                    });
+
+                    Toast.makeText(PublicRelationsActivity.this,"Upload Succussful " + imagename ,Toast.LENGTH_LONG).show();
+                    progressBar.setVisibility(View.GONE);
                 }
             })
                     .addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            progressBar.setVisibility(View.GONE);
                             Toast.makeText(PublicRelationsActivity.this,e.getMessage(),Toast.LENGTH_SHORT).show();
                         }
                     });
@@ -205,7 +267,6 @@ public class PublicRelationsActivity extends AppCompatActivity {
             editTextLongtitude.requestFocus();
             return;
         }
-
         String id = database_Pr.push().getKey();
         PrList prList = new PrList(id, name, category, address, open, tel, detail, latitude, longtitude, status,imagelogo,user,image1,image2,image3);
         database_Pr.child(ts1).setValue(prList);
@@ -248,5 +309,26 @@ public class PublicRelationsActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onLocationChanged(Location location) {
+        double longtitude = location.getLongitude();
+        double latitude = location.getLatitude();
+       textView.setText("longtitude" + longtitude + "latitude" + latitude);
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+
+    }
 }
 
