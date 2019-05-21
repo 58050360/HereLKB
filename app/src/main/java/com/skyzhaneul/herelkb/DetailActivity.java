@@ -103,6 +103,13 @@ public class DetailActivity extends AppCompatActivity {
             case android.R.id.home:
                 finish();
                 break;
+            case R.id.menuProfile:
+                Intent intent2 = new Intent(DetailActivity.this, ProfileActivity.class);
+                intent2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent2.putExtra("Email", data);
+                intent2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent2);
+                break;
         }
 
         return true;

@@ -21,7 +21,7 @@
     <string name="locateopentime">locateopentime</string>
 
     <string name="locatetel">locatetel</string>
-    
+
     <array name="category">
         <item>Restaurants</item>
         <item>Cafe</item>

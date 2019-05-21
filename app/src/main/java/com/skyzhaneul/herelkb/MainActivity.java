@@ -334,6 +334,13 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.OnItemC
                 intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent1);
                 break;
+            case R.id.menuProfile:
+                Intent intent2 = new Intent(MainActivity.this, ProfileActivity.class);
+                intent2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent2.putExtra("Email", data);
+                intent2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent2);
+                break;
         }
 
         return true;

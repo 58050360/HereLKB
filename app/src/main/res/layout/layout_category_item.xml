@@ -2,26 +2,27 @@
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
-    android:layout_height="100dp"
-    app:cardBackgroundColor="#EEEEEE"
-   android:outlineAmbientShadowColor="#D81A1A"
+    android:layout_height="75dp"
+    android:outlineAmbientShadowColor="#D81A1A"
     android:outlineSpotShadowColor="#0F13EE"
+    app:cardBackgroundColor="#EEEEEE"
     app:cardElevation="10dp">
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
-        android:layout_height="100dp">
+        android:layout_height="70dp">
 
 
         <ImageView
             android:id="@+id/image"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
+            android:layout_marginStart="16dp"
             android:layout_marginLeft="50dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="6dp"
             app:srcCompat="@drawable/shape_layout" />
 
         <ImageView
@@ -34,6 +35,7 @@
             android:layout_marginTop="10dp"
             android:visibility="gone"
             app:srcCompat="@drawable/shape_layout" />
+
         <ImageView
             android:id="@+id/image3"
             android:layout_width="30dp"
@@ -44,6 +46,7 @@
             android:layout_marginTop="10dp"
             android:visibility="gone"
             app:srcCompat="@drawable/shape_layout" />
+
         <ImageView
             android:id="@+id/image4"
             android:layout_width="20dp"
@@ -64,7 +67,7 @@
             android:gravity="center"
             android:text="My Name"
             android:textColor="@color/back"
-            android:textSize="23dp"
+            android:textSize="15sp"
             android:typeface="monospace" />
 
         <TextView
@@ -105,6 +108,7 @@
             android:textColor="#FFFFFF"
             android:textSize="20dp"
             android:typeface="monospace" />
+
         <TextView
             android:id="@+id/locatetel"
             android:layout_width="match_parent"
@@ -117,6 +121,7 @@
             android:textColor="#FFFFFF"
             android:textSize="20dp"
             android:typeface="monospace" />
+
         <TextView
             android:id="@+id/locatecategory"
             android:layout_width="match_parent"

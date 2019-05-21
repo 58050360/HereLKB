@@ -37,40 +37,52 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
 
+import static com.skyzhaneul.herelkb.ProfileActivity.EXTRA_ADDRESSPR;
+import static com.skyzhaneul.herelkb.ProfileActivity.EXTRA_CATEGORYPR;
+import static com.skyzhaneul.herelkb.ProfileActivity.EXTRA_DATEPR;
+import static com.skyzhaneul.herelkb.ProfileActivity.EXTRA_DETAILPR;
+import static com.skyzhaneul.herelkb.ProfileActivity.EXTRA_LATITUDEPR;
+import static com.skyzhaneul.herelkb.ProfileActivity.EXTRA_LONGTITUDEPR;
+import static com.skyzhaneul.herelkb.ProfileActivity.EXTRA_NAMEPR;
+import static com.skyzhaneul.herelkb.ProfileActivity.EXTRA_STATUSPR;
+import static com.skyzhaneul.herelkb.ProfileActivity.EXTRA_TELPR;
+import static com.skyzhaneul.herelkb.ProfileActivity.EXTRA_TIMEPR;
 
-public class PublicRelationsActivity extends AppCompatActivity implements LocationListener {
 
-    private static final int CHOSE_IMAGE = 101;
+public class EditDeleteActivity extends AppCompatActivity implements LocationListener {
+
+
     String user;
     private boolean mLocationPermissionGranted = false;
     EditText editTextName, editTextAddress, editTextOpen, editTextTel, editTextDetail, editTextLatitude, editTextLongtitude;
     Spinner spinner;
-    Button button_add, button_upload, button_addlalong;
+    Button button_edit,button_delete,button_addlalong;
     DatabaseReference database_Pr;
-    ImageView imagepick;
-    Uri uriImage;
     ProgressBar progressBar;
-    public String imagename;
     FirebaseAuth mAuth;
-    TextView textView, textView2;
+    TextView textView;
     private LocationManager locationManager;
-
+        public String key;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pr);
+        setContentView(R.layout.activity_edit_delete);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setSupportActionBar(toolbar);
@@ -81,7 +93,6 @@ public class PublicRelationsActivity extends AppCompatActivity implements Locati
         }
         user = getIntent().getExtras().getString("Email");
 
-        database_Pr = FirebaseDatabase.getInstance().getReference("PrList");
         mAuth = FirebaseAuth.getInstance();
         editTextName = (EditText) findViewById(R.id.editTextName);
         editTextAddress = (EditText) findViewById(R.id.editTextAddress);
@@ -91,13 +102,34 @@ public class PublicRelationsActivity extends AppCompatActivity implements Locati
         editTextLatitude = (EditText) findViewById(R.id.editTextLatitude);
         editTextLongtitude = (EditText) findViewById(R.id.editTextLongtitude);
         spinner = (Spinner) findViewById(R.id.spinnerCategory);
-        button_add = (Button) findViewById(R.id.button_add);
-        button_upload = (Button) findViewById(R.id.button_upload);
+        button_edit = (Button) findViewById(R.id.button_edit);
+        button_delete = (Button) findViewById(R.id.button_delete);
         button_addlalong = (Button) findViewById(R.id.button_addlalong);
-        imagepick = (ImageView) findViewById(R.id.image_logo);
-        textView = (TextView) findViewById(R.id.txt_pr_image);
-        textView2 = (TextView) findViewById(R.id.txt_pr_image2);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
+
+        Intent intent = getIntent();
+        String pr_name = intent.getStringExtra(EXTRA_NAMEPR);
+        String pr_date = intent.getStringExtra(EXTRA_DATEPR);
+        String pr_detail = intent.getStringExtra(EXTRA_DETAILPR);
+        String pr_address = intent.getStringExtra(EXTRA_ADDRESSPR);
+        String pr_time = intent.getStringExtra(EXTRA_TIMEPR);
+        String pr_tel = intent.getStringExtra(EXTRA_TELPR);
+        String pr_latitude = intent.getStringExtra(EXTRA_LATITUDEPR);
+        String pr_longtitude = intent.getStringExtra(EXTRA_LONGTITUDEPR);
+        String pr_category = intent.getStringExtra(EXTRA_CATEGORYPR);
+        String pr_status = intent.getStringExtra(EXTRA_STATUSPR);
+
+        editTextName.setText(pr_name);
+        editTextAddress.setText(pr_address);
+        editTextDetail.setText(pr_detail);
+        editTextLatitude.setText(pr_latitude);
+        editTextLongtitude.setText(pr_longtitude);
+        editTextOpen.setText(pr_time);
+        editTextTel.setText(pr_tel);
+
+        key = pr_date+" "+pr_status;
+        database_Pr = FirebaseDatabase.getInstance().getReference("PrList");
+
 
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
@@ -114,106 +146,34 @@ public class PublicRelationsActivity extends AppCompatActivity implements Locati
             return;
         }
         final Location location = locationManager.getLastKnownLocation(locationManager.NETWORK_PROVIDER);
-        button_add.setOnClickListener(new View.OnClickListener() {
+        button_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                addPRlist();
+                editPRlist();
+                finish();
+
 
             }
         });
-        imagepick.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                showImageChoser();
-            }
-        });
-        button_upload.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) { if (uriImage != null) {
-                upLoadImageToFirebaseStorage(); } else{ Toast.makeText(PublicRelationsActivity.this,"No file selected",Toast.LENGTH_LONG).show();}
-            }
-        });
         button_addlalong.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onLocationChanged(location);
             }
         });
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == CHOSE_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null) {
-            uriImage = data.getData();
-
-            try {
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uriImage);
-                imagepick.setImageBitmap(bitmap);
-
-            } catch (IOException e) {
-                e.printStackTrace();
+        button_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deletePRlist();
+                finish();
             }
-        }
-    }
-private String getFileExtension(Uri uri){
-    ContentResolver cR = getContentResolver();
-    MimeTypeMap mime = MimeTypeMap.getSingleton();
-    return mime.getExtensionFromMimeType(cR.getType(uri));
-
-}
-
-    private void upLoadImageToFirebaseStorage() {
-        String name = editTextName.getText().toString().trim();
-        Date ts = Calendar.getInstance().getTime();
-        String ts1 =  ts.toString();
-        imagename = name+ts1 ;
-        StorageReference imageRef =
-                FirebaseStorage.getInstance().getReference("image/" + imagename  + "."+ getFileExtension(uriImage));
-
-        if (uriImage != null) {
-            progressBar.setVisibility(View.VISIBLE);
-            imageRef.putFile(uriImage).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    Task<Uri> result =  taskSnapshot.getMetadata().getReference().getDownloadUrl();
-                    result.addOnSuccessListener(new OnSuccessListener<Uri>() {
-                        @Override
-                        public void onSuccess(Uri uri) {
-                         String  downloadLink = uri.toString();
-                          textView.setText(Html.fromHtml(downloadLink+" Success"));
-                          textView.setMovementMethod(LinkMovementMethod.getInstance());
-
-                        }
-
-
-                    });
-
-                    Toast.makeText(PublicRelationsActivity.this,"Upload Succussful " + imagename ,Toast.LENGTH_LONG).show();
-                    progressBar.setVisibility(View.GONE);
-                }
-            })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(PublicRelationsActivity.this,e.getMessage(),Toast.LENGTH_SHORT).show();
-                        }
-                    });
-        }
+        });
     }
 
 
-    private void showImageChoser() {
-        Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Select Location Image"), CHOSE_IMAGE);
 
-    }
-
-
-    private void addPRlist() {
+    private void editPRlist() {
         String name = editTextName.getText().toString().trim();
         String category = spinner.getSelectedItem().toString();
         String address = editTextAddress.getText().toString().trim();
@@ -222,7 +182,7 @@ private String getFileExtension(Uri uri){
         String detail = editTextDetail.getText().toString().trim();
         String latitude = editTextLatitude.getText().toString().trim();
         String longtitude = editTextLongtitude.getText().toString().trim();
-        String status = "New Request";
+        String status = "Editing";
         Date ts = Calendar.getInstance().getTime();
         String ts1 =  ts.toString();
 
@@ -267,10 +227,68 @@ private String getFileExtension(Uri uri){
         PrList prList = new PrList(name, category, address, open, tel, detail, latitude, longtitude, status,user,ts1);
         String sent = ts1+" "+status;
         database_Pr.child(sent).setValue(prList);
-
+        DatabaseReference remove_past_request = FirebaseDatabase.getInstance().getReference("PrList").child(key);
+        remove_past_request.removeValue();
         Toast.makeText(this, "PR list added", Toast.LENGTH_LONG).show();
     }
+    private void deletePRlist() {
+        String name = editTextName.getText().toString().trim();
+        String category = spinner.getSelectedItem().toString();
+        String address = editTextAddress.getText().toString().trim();
+        String open = editTextOpen.getText().toString().trim();
+        String tel = editTextTel.getText().toString().trim();
+        String detail = editTextDetail.getText().toString().trim();
+        String latitude = editTextLatitude.getText().toString().trim();
+        String longtitude = editTextLongtitude.getText().toString().trim();
+        String status = "Deleting";
+        Date ts = Calendar.getInstance().getTime();
+        String ts1 =  ts.toString();
 
+
+
+        if (name.isEmpty()) {
+            editTextName.setError("Name is required");
+            editTextName.requestFocus();
+            return;
+        }
+        if (address.isEmpty()) {
+            editTextAddress.setError("Address is required");
+            editTextAddress.requestFocus();
+            return;
+        }
+        if (open.isEmpty()) {
+            editTextOpen.setError("OpenTime is required");
+            editTextOpen.requestFocus();
+            return;
+        }
+        if (tel.isEmpty()) {
+            editTextTel.setError("Telephone Number is required");
+            editTextTel.requestFocus();
+            return;
+        }
+        if (detail.isEmpty()) {
+            editTextDetail.setError("Location Detail is required");
+            editTextDetail.requestFocus();
+            return;
+        }
+        if (latitude.isEmpty()) {
+            editTextLatitude.setError("Latitude is required");
+            editTextLatitude.requestFocus();
+            return;
+        }
+        if (longtitude.isEmpty()) {
+            editTextLongtitude.setError("Longtitude is required");
+            editTextLongtitude.requestFocus();
+            return;
+        }
+        String id = database_Pr.push().getKey();
+        PrList prList = new PrList(name, category, address, open, tel, detail, latitude, longtitude, status,user,ts1);
+        String sent = ts1+" "+status;
+        database_Pr.child(sent).setValue(prList);
+        DatabaseReference remove_past_request = FirebaseDatabase.getInstance().getReference("PrList").child(key);
+        remove_past_request.removeValue();
+        Toast.makeText(this, "PR list added", Toast.LENGTH_LONG).show();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -285,13 +303,13 @@ private String getFileExtension(Uri uri){
         switch (item.getItemId()) {
             case R.id.menuLogout:
                 FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(PublicRelationsActivity.this, LoginActivity.class);
+                Intent intent = new Intent(EditDeleteActivity.this, LoginActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 break;
             case R.id.menuHome:
-                Intent intent1 = new Intent(PublicRelationsActivity.this, MainActivity.class);
+                Intent intent1 = new Intent(EditDeleteActivity.this, MainActivity.class);
                 intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent1.putExtra("Email", user);
                 intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -301,7 +319,7 @@ private String getFileExtension(Uri uri){
                 finish();
                 break;
             case R.id.menuProfile:
-                Intent intent2 = new Intent(PublicRelationsActivity.this, ProfileActivity.class);
+                Intent intent2 = new Intent(EditDeleteActivity.this, ProfileActivity.class);
                 intent2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent2.putExtra("Email", user);
                 intent2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -318,8 +336,8 @@ private String getFileExtension(Uri uri){
     public void onLocationChanged(Location location) {
         double longtitude = location.getLongitude();
         double latitude = location.getLatitude();
-       editTextLongtitude.setText(""+longtitude);
-       editTextLatitude.setText(""+latitude);
+        editTextLongtitude.setText("" + longtitude);
+        editTextLatitude.setText(""+latitude);
     }
 
     @Override
@@ -337,4 +355,3 @@ private String getFileExtension(Uri uri){
 
     }
 }
-

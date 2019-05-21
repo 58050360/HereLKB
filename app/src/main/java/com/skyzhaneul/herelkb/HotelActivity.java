@@ -223,6 +223,13 @@ public class HotelActivity extends AppCompatActivity implements MyAdapter.OnItem
             case android.R.id.home:
                 finish();
                 break;
+            case R.id.menuProfile:
+                Intent intent2 = new Intent(HotelActivity.this, ProfileActivity.class);
+                intent2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent2.putExtra("Email", data);
+                intent2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent2);
+                break;
         }
 
         return true;

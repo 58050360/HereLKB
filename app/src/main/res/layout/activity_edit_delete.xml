@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffe6e6"
-    tools:context=".PublicRelationsActivity">
+    tools:context=".EditDeleteActivity">
 
     <RelativeLayout
         android:id="@+id/content_main"
@@ -28,9 +28,9 @@
             android:layout_alignParentStart="true"
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
-            android:text="Public Relations"
+            android:text="Public Relations Edits/Delete "
             android:textColor="@color/back"
-            android:textSize="18sp"
+            android:textSize="17sp"
             android:textStyle="normal"
             android:typeface="monospace" />
 
@@ -41,7 +41,7 @@
             android:layout_below="@id/txt_pr"
             android:layout_alignParentStart="true"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="2dp"
             android:paddingTop="10dp"
             android:text="Location Name"
             android:textColor="@color/back"
@@ -229,7 +229,7 @@
             android:textColor="@color/back"
             android:textColorHint="@color/colorbutton2"
             android:typeface="monospace"
-            tools:textSize="18sp" />
+            tools:textSize="17sp" />
 
         <TextView
             android:id="@+id/txt_pr_latitude"
@@ -349,93 +349,50 @@
             android:textColor="@color/back"
             android:textColorHint="@color/colorbutton2"
             android:typeface="monospace"
-            tools:textSize="18sp" />
+            tools:textSize="17sp" />
 
-        <TextView
-            android:id="@+id/txt_pr_imagelogo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/editTextDetail"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="20dp"
-            android:paddingTop="10dp"
-            android:text="Location Image Logo"
-            android:textColor="@color/back"
-            android:textSize="13dp"
-            android:textStyle="normal"
-            android:typeface="monospace" />
-
-        <ImageView
-            android:id="@+id/image_logo"
-            android:layout_width="120dp"
-            android:layout_height="80dp"
-           android:layout_marginStart="20dp"
-            android:layout_below="@id/txt_pr_imagelogo"
-            android:layout_marginTop="6dp"
-            android:layout_marginEnd="10dp"
-            android:background="@drawable/shape_layout3"
-            app:srcCompat="@drawable/ic_action_addimage" />
-
-        <TextView
-            android:id="@+id/txt_pr_image"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/image_logo"
-            android:layout_alignParentStart="true"
-            android:autoLink="all"
-            android:layout_marginStart="20dp"
-            android:paddingTop="10dp"
-            android:text=""
-            android:textColor="@color/back"
-            android:textSize="13dp"
-            android:textStyle="normal"
-            android:typeface="monospace" />
-        <TextView
-            android:id="@+id/txt_pr_image2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/txt_pr_image"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="20dp"
-            android:paddingTop="30dp"
-            android:text="*upload ภาพ logo 1 รูป / ภาพประกอบ 3 รูป *"
-            android:textColor="@color/back"
-            android:textSize="13dp"
-            android:textStyle="normal"
-            android:typeface="monospace" />
 
         <Button
-            android:layout_width="120dp"
-            android:layout_height="70dp"
-            android:id="@+id/button_upload"
-            android:textColor="@color/back"
-            android:layout_marginStart="150dp"
-            android:layout_below="@id/txt_pr_imagelogo"
-            android:layout_marginTop="10dp"
-            android:drawableLeft="@drawable/ic_action_add"
-            android:text="Upload Image" />
-
-        <Button
-            android:id="@+id/button_add"
+            android:id="@+id/button_edit"
             style="@android:style/Widget.Holo.Button.Inset"
             android:layout_width="300dp"
             android:layout_height="45dp"
-            android:layout_below="@+id/txt_pr_image2"
-            android:layout_centerHorizontal="true"
-            android:layout_marginStart="0dp"
+            android:layout_below="@+id/editTextDetail"
+            android:layout_marginStart="11dp"
             android:layout_marginTop="20dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="30dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="0dp"
             android:background="@drawable/shape_layout4"
-            android:drawableLeft="@drawable/ic_action_send"
+            android:drawableLeft="@drawable/ic_action_edit"
             android:drawablePadding="-20dp"
             android:paddingLeft="10dp"
-            android:text="Add Public Relations"
+            android:text="Edit Public Relations"
+            android:textColor="#FFFFFF"
+            android:textStyle="normal|bold"
+            android:layout_centerHorizontal="true"
+            android:typeface="monospace"
+            tools:textSize="18sp" />
+
+        <Button
+            android:id="@+id/button_delete"
+            style="@android:style/Widget.Holo.Button.Inset"
+            android:layout_width="300dp"
+            android:layout_height="45dp"
+            android:layout_below="@+id/button_edit"
+            android:layout_marginStart="11dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/shape_layout4"
+            android:drawableLeft="@drawable/ic_action_delete"
+            android:drawablePadding="-20dp"
+            android:paddingLeft="5dp"
+            android:text="Delete Public Relations"
             android:textColor="#FFFFFF"
             android:textStyle="normal|bold"
             android:typeface="monospace"
             tools:textSize="18sp" />
-
         <Button
             android:id="@+id/button_addlalong"
             style="@android:style/Widget.Holo.Button.Inset"
@@ -455,7 +412,6 @@
             android:textStyle="normal|bold"
             android:typeface="monospace"
             tools:textSize="18sp" />
-
 
 
         <ProgressBar
