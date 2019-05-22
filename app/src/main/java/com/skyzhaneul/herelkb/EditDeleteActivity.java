@@ -229,7 +229,7 @@ public class EditDeleteActivity extends AppCompatActivity implements LocationLis
         database_Pr.child(sent).setValue(prList);
         DatabaseReference remove_past_request = FirebaseDatabase.getInstance().getReference("PrList").child(key);
         remove_past_request.removeValue();
-        Toast.makeText(this, "PR list added", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "PR list Editing", Toast.LENGTH_LONG).show();
     }
     private void deletePRlist() {
         String name = editTextName.getText().toString().trim();
@@ -287,7 +287,7 @@ public class EditDeleteActivity extends AppCompatActivity implements LocationLis
         database_Pr.child(sent).setValue(prList);
         DatabaseReference remove_past_request = FirebaseDatabase.getInstance().getReference("PrList").child(key);
         remove_past_request.removeValue();
-        Toast.makeText(this, "PR list added", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "PR list Deletng", Toast.LENGTH_LONG).show();
     }
 
     @Override
