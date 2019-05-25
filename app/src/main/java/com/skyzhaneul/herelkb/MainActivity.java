@@ -48,6 +48,9 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.OnItemC
     public static final String EXTRA_URL3 = "imageUrl3";
     public static final String EXTRA_URL4 = "imageUrl4";
     public static final String EXTRA_CATEGORY = "locateCategory";
+    public static final String EXTRA_LATITUDE = "locateLatitude";
+    public static final String EXTRA_LONG = "locateLong";
+
 
     RecyclerView recyclerView;
     DatabaseReference databaseReference;
@@ -84,7 +87,7 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.OnItemC
         button_transport.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent_transport = new Intent(MainActivity.this, MainActivity.class);
+                Intent intent_transport = new Intent(MainActivity.this, TravelActivity.class);
                 intent_transport.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent_transport.putExtra("Email",data);
                 intent_transport.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -218,6 +221,9 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.OnItemC
                 holder.t4.setText(model.getLocateTime());
                 holder.t5.setText(model.getLocateTel());
                 holder.t6.setText(model.getCategory());
+                holder.t7.setText(model.getLocateLatitude());
+                holder.t8.setText(model.getLocateLong());
+
                 Picasso.get().load(model.getImageLink()).into(holder.i3, new Callback() {
                     @Override
                     public void onSuccess() {
@@ -360,7 +366,8 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.OnItemC
         detailIntent.putExtra(EXTRA_URL3,clickItem.getImageLink3());
         detailIntent.putExtra(EXTRA_URL4,clickItem.getImageLink4());
         detailIntent.putExtra(EXTRA_CATEGORY,clickItem.getCategory());
-
+       detailIntent.putExtra(EXTRA_LATITUDE,clickItem.getLocateLatitude());
+       detailIntent.putExtra(EXTRA_LONG,clickItem.getLocateLong());
         detailIntent.putExtra("Email",data);
 
         startActivity(detailIntent);

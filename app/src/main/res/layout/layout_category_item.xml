@@ -130,7 +130,34 @@
             android:layout_centerHorizontal="true"
             android:layout_toEndOf="@+id/locatetel"
             android:gravity="center"
-            android:text="My detail"
+            android:text="My category"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp"
+            android:typeface="monospace" />
+
+        <TextView
+            android:id="@+id/locateLatitude"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
+            android:layout_toEndOf="@+id/locatecategory"
+            android:gravity="center"
+            android:text="My Latitude"
+            android:textColor="#FFFFFF"
+            android:textSize="20dp"
+            android:typeface="monospace" />
+
+
+        <TextView
+            android:id="@+id/locateLong"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_centerHorizontal="true"
+            android:layout_toEndOf="@+id/locateLatitude"
+            android:gravity="center"
+            android:text="My Latitude"
             android:textColor="#FFFFFF"
             android:textSize="20dp"
             android:typeface="monospace" />

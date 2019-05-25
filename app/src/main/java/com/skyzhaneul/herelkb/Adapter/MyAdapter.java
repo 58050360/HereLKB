@@ -70,7 +70,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyAdapterViewHolde
         Picasso.get().load(categoryItem.getImageLink3()).into(holder.i3);
         Picasso.get().load(categoryItem.getImageLink4()).into(holder.i4);
         holder.t6.setText(categoryItem.getCategory());
-
+        holder.t7.setText(categoryItem.getLocateLatitude());
+        holder.t8.setText(categoryItem.getLocateLong());
     }
 
     public class MyAdapterViewHolder extends RecyclerView.ViewHolder {
@@ -84,6 +85,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyAdapterViewHolde
         public ImageView i3;
         public ImageView i4;
         public TextView t6;
+      public TextView t7;
+       public TextView t8;
 
         public MyAdapterViewHolder(View itemView) {
             super(itemView);
@@ -97,6 +100,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyAdapterViewHolde
             i3 = (ImageView)itemView.findViewById(R.id.image3);
             i4 = (ImageView) itemView.findViewById(R.id.image4);
             t6 = (TextView) itemView.findViewById(R.id.locatecategory);
+           t7 = (TextView) itemView.findViewById(R.id.locateLatitude);
+            t8 = (TextView) itemView.findViewById(R.id.locateLong);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

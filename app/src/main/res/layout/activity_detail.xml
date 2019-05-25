@@ -150,13 +150,44 @@
             android:textStyle="normal"
             android:typeface="monospace" />
 
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+        <TextView
+            android:id="@+id/text_view_locationLatitude"
+            android:layout_width="200dp"
+            android:layout_height="30dp"
+            android:layout_below="@+id/map"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="0dp"
+            android:text="latitude"
+            android:textColor="#FFFFFF"
+            android:textSize="15dp"
+            android:textStyle="normal"
+            android:typeface="monospace" />
+        <TextView
+            android:id="@+id/text_view_locationLong"
+            android:layout_width="200dp"
+            android:layout_height="30dp"
+            android:layout_below="@+id/text_view_locationLatitude"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="20dp"
+            android:text="longtitude"
+            android:textColor="#FFFFFF"
+            android:textSize="15dp"
+            android:textStyle="normal"
+            android:typeface="monospace" />
+
+        <fragment
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
             android:layout_below="@id/image_view_locate3"
-            android:layout_marginTop="-2dp"
-            android:text="Button" />
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"/>
+
+
 
 
 

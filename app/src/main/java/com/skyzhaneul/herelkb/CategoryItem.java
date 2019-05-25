@@ -2,10 +2,9 @@ package com.skyzhaneul.herelkb;
 
 public class CategoryItem {
 
-    public String name, imageLink, detail, imageLink2, locateAddress, locateTime,locateTel,imageLink3,imageLink4,category;
+    public String name, imageLink, detail, imageLink2, locateAddress, locateTime,locateTel,imageLink3,imageLink4,category,locateLatitude,locateLong;
 
-    public CategoryItem(String name, String imageLink, String detail, String imageLink2, String locateAddress, String locateTime,
-                        String locateTel,String imageLink3,String imageLink4,String category) {
+    public CategoryItem(String name, String imageLink, String detail, String imageLink2, String locateAddress, String locateTime, String locateTel, String imageLink3, String imageLink4, String category, String locateLatitude, String locateLong) {
         this.name = name;
         this.imageLink = imageLink;
         this.detail = detail;
@@ -16,12 +15,19 @@ public class CategoryItem {
         this.imageLink3 = imageLink3;
         this.imageLink4 = imageLink4;
         this.category = category;
+        this.locateLatitude = locateLatitude;
+        this.locateLong = locateLong;
     }
-
 
     public CategoryItem() {
     }
+    public String getLocateLatitude() {
+        return locateLatitude;
+    }
 
+    public void setLocateLatitude(String locateLatitude) {
+        this.locateLatitude = locateLatitude;
+    }
     public String getCategory() {
         return category;
     }
@@ -73,6 +79,14 @@ public class CategoryItem {
 
     public String getName() {
         return name;
+    }
+
+    public String getLocateLong() {
+        return locateLong;
+    }
+
+    public void setLocateLong(String locateLong) {
+        this.locateLong = locateLong;
     }
 
     public void setName(String name) {
