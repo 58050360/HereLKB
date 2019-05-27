@@ -6,13 +6,14 @@
     android:layout_height="match_parent"
     android:background="@color/back"
     android:orientation="vertical"
-    tools:context=".TravelActivity">
+    tools:context=".EmergencyActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/toolbar" />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
@@ -21,15 +22,16 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="10dp"
         android:gravity="center"
-        android:text="สถานีการคมนาคมภายในเขตลาดกระบัง"
+        android:text="โรงพยาบาลภายในเขตลาดกระบัง"
         android:textColor="#FFFFFF"
         android:textSize="20dp"
         android:typeface="monospace" />
+
     <fragment
         android:id="@+id/map"
-        android:layout_below="@id/textView"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_below="@id/textView" />
 
 </RelativeLayout>

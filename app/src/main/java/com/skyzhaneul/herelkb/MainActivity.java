@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.OnItemC
         button_emergency.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent_emergency = new Intent(MainActivity.this, MainActivity.class);
+                Intent intent_emergency = new Intent(MainActivity.this, EmergencyActivity.class);
                 intent_emergency.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent_emergency.putExtra("Email",data);
                 intent_emergency.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);

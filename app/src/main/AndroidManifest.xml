@@ -18,7 +18,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TravelActivity"></activity>
+        <activity android:name=".EmergencyActivity"></activity>
+        <activity android:name=".TravelActivity" />
         <activity android:name=".EditDeleteActivity" />
         <activity
             android:name=".ProfileActivity"
