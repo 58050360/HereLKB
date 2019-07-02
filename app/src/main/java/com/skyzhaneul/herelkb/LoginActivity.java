@@ -40,6 +40,22 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private void userLogin() {
         final String email = txt_email.getText().toString().trim();
         String password = txt_password.getText().toString().trim();
+        if (email.equals("admin@admin.admin") && password.equals("admin1")) {
+            mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    progressBar.setVisibility(View.GONE);
+                    if(task.isSuccessful()){
+                        Intent i = new Intent(LoginActivity.this,AdminActivity.class);
+                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(i);
+                    }else {
+                        Toast.makeText(getApplicationContext() , task.getException().getMessage(),Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+        }); return; }
         if (email.isEmpty()) {
             txt_email.setError("Email is required");
             txt_email.requestFocus();
@@ -61,7 +77,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             return;
         }
         progressBar.setVisibility(View.VISIBLE);
-
         mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -78,6 +93,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             }
         });
     }
+
 
     @Override
     public void onClick(View view) {

@@ -64,25 +64,25 @@ import static com.skyzhaneul.herelkb.ProfileActivity.EXTRA_TELPR;
 import static com.skyzhaneul.herelkb.ProfileActivity.EXTRA_TIMEPR;
 
 
-public class EditDeleteActivity extends AppCompatActivity implements LocationListener {
+public class AdEditDeleteActivity extends AppCompatActivity implements LocationListener {
 
 
     String user;
     private boolean mLocationPermissionGranted = false;
     EditText editTextName, editTextAddress, editTextOpen, editTextTel, editTextDetail, editTextLatitude, editTextLongtitude;
     Spinner spinner;
-    Button button_edit,button_delete,button_addlalong;
+    Button button_approve,button_delete,button_addlalong;
     DatabaseReference database_Pr;
     ProgressBar progressBar;
     FirebaseAuth mAuth;
     TextView textView;
     private LocationManager locationManager;
-        public String key;
+    public String key;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_delete);
+        setContentView(R.layout.activity_ad_edit_delete);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         setSupportActionBar(toolbar);
@@ -102,7 +102,7 @@ public class EditDeleteActivity extends AppCompatActivity implements LocationLis
         editTextLatitude = (EditText) findViewById(R.id.editTextLatitude);
         editTextLongtitude = (EditText) findViewById(R.id.editTextLongtitude);
         spinner = (Spinner) findViewById(R.id.spinnerCategory);
-        button_edit = (Button) findViewById(R.id.button_edit);
+        button_approve = (Button) findViewById(R.id.button_approve);
         button_delete = (Button) findViewById(R.id.button_delete);
         button_addlalong = (Button) findViewById(R.id.button_addlalong);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
@@ -146,7 +146,7 @@ public class EditDeleteActivity extends AppCompatActivity implements LocationLis
             return;
         }
         final Location location = locationManager.getLastKnownLocation(locationManager.NETWORK_PROVIDER);
-        button_edit.setOnClickListener(new View.OnClickListener() {
+        button_approve.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 editPRlist();
@@ -182,7 +182,7 @@ public class EditDeleteActivity extends AppCompatActivity implements LocationLis
         String detail = editTextDetail.getText().toString().trim();
         String latitude = editTextLatitude.getText().toString().trim();
         String longtitude = editTextLongtitude.getText().toString().trim();
-        String status = "Editing";
+        String status = "Approved";
         Date ts = Calendar.getInstance().getTime();
         String ts1 =  ts.toString();
 
@@ -229,7 +229,7 @@ public class EditDeleteActivity extends AppCompatActivity implements LocationLis
         database_Pr.child(sent).setValue(prList);
         DatabaseReference remove_past_request = FirebaseDatabase.getInstance().getReference("PrList").child(key);
         remove_past_request.removeValue();
-        Toast.makeText(this, "PR list Editing", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "PR list Approving", Toast.LENGTH_LONG).show();
     }
     private void deletePRlist() {
         String name = editTextName.getText().toString().trim();
@@ -303,13 +303,13 @@ public class EditDeleteActivity extends AppCompatActivity implements LocationLis
         switch (item.getItemId()) {
             case R.id.menuLogout:
                 FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(EditDeleteActivity.this, LoginActivity.class);
+                Intent intent = new Intent(AdEditDeleteActivity.this, LoginActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 break;
             case R.id.menuHome:
-                Intent intent1 = new Intent(EditDeleteActivity.this, MainActivity.class);
+                Intent intent1 = new Intent(AdEditDeleteActivity.this, AdminActivity.class);
                 intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 intent1.putExtra("Email", user);
                 intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -319,11 +319,11 @@ public class EditDeleteActivity extends AppCompatActivity implements LocationLis
                 finish();
                 break;
             case R.id.menuProfile:
-                Intent intent2 = new Intent(EditDeleteActivity.this, ProfileActivity.class);
-                intent2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intent2.putExtra("Email", user);
-                intent2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent2);
+//                Intent intent2 = new Intent(AdEditDeleteActivity.this, ProfileActivity.class);
+//                intent2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                intent2.putExtra("Email", user);
+//                intent2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                startActivity(intent2);
                 break;
 
         }

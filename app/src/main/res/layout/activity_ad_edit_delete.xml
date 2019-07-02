@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffe6e6"
-    tools:context=".EditDeleteActivity">
+    tools:context=".AdEditDeleteActivity">
 
     <RelativeLayout
         android:id="@+id/content_main"
@@ -353,9 +353,9 @@
 
 
         <Button
-            android:id="@+id/button_edit"
+            android:id="@+id/button_approve"
             style="@android:style/Widget.Holo.Button.Inset"
-            android:layout_width="300dp"
+            android:layout_width="330dp"
             android:layout_height="45dp"
             android:layout_below="@+id/editTextDetail"
             android:layout_marginStart="11dp"
@@ -363,10 +363,10 @@
             android:layout_marginEnd="0dp"
             android:layout_marginBottom="0dp"
             android:background="@drawable/shape_layout4"
-            android:drawableLeft="@drawable/ic_action_edit"
+            android:drawableLeft="@drawable/ic_action_approve"
             android:drawablePadding="-20dp"
             android:paddingLeft="10dp"
-            android:text="Edit Public Relations"
+            android:text="Approve Public Relations"
             android:textColor="#FFFFFF"
             android:textStyle="normal|bold"
             android:layout_centerHorizontal="true"
