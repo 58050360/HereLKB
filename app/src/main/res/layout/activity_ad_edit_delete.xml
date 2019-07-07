@@ -437,19 +437,32 @@
             tools:textSize="18sp" />
 
         <TextView
-            android:id="@+id/txt_pr_status"
+        android:id="@+id/txt_pr_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/button_delete"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="20dp"
+        android:paddingTop="10dp"
+        android:text="Location Status"
+        android:textColor="@color/back"
+        android:textSize="13dp"
+        android:textStyle="normal"
+        android:typeface="monospace" />
+
+        <TextView
+            android:id="@+id/txt_pr_user"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/button_delete"
+            android:layout_below="@id/txt_pr_status"
             android:layout_alignParentStart="true"
             android:layout_marginStart="20dp"
             android:paddingTop="10dp"
-            android:text="Location Status"
+            android:text="Name User sent"
             android:textColor="@color/back"
             android:textSize="13dp"
             android:textStyle="normal"
             android:typeface="monospace" />
-
 
         <ProgressBar
             android:layout_width="match_parent"

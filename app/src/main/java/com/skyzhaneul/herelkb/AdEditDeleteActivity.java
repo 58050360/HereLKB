@@ -52,22 +52,22 @@ import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
 
-import static com.skyzhaneul.herelkb.ProfileActivity.EXTRA_ADDRESSPR;
-import static com.skyzhaneul.herelkb.ProfileActivity.EXTRA_CATEGORYPR;
-import static com.skyzhaneul.herelkb.ProfileActivity.EXTRA_DATEPR;
-import static com.skyzhaneul.herelkb.ProfileActivity.EXTRA_DETAILPR;
-import static com.skyzhaneul.herelkb.ProfileActivity.EXTRA_LATITUDEPR;
-import static com.skyzhaneul.herelkb.ProfileActivity.EXTRA_LONGTITUDEPR;
-import static com.skyzhaneul.herelkb.ProfileActivity.EXTRA_NAMEPR;
-import static com.skyzhaneul.herelkb.ProfileActivity.EXTRA_STATUSPR;
-import static com.skyzhaneul.herelkb.ProfileActivity.EXTRA_TELPR;
-import static com.skyzhaneul.herelkb.ProfileActivity.EXTRA_TIMEPR;
+import static com.skyzhaneul.herelkb.AdminActivity.EXTRA_ADDRESSPR;
+import static com.skyzhaneul.herelkb.AdminActivity.EXTRA_CATEGORYPR;
+import static com.skyzhaneul.herelkb.AdminActivity.EXTRA_DATEPR;
+import static com.skyzhaneul.herelkb.AdminActivity.EXTRA_DETAILPR;
+import static com.skyzhaneul.herelkb.AdminActivity.EXTRA_LATITUDEPR;
+import static com.skyzhaneul.herelkb.AdminActivity.EXTRA_LONGTITUDEPR;
+import static com.skyzhaneul.herelkb.AdminActivity.EXTRA_NAMEPR;
+import static com.skyzhaneul.herelkb.AdminActivity.EXTRA_STATUSPR;
+import static com.skyzhaneul.herelkb.AdminActivity.EXTRA_TELPR;
+import static com.skyzhaneul.herelkb.AdminActivity.EXTRA_TIMEPR;
+import static com.skyzhaneul.herelkb.AdminActivity.EXTRA_USERPR;
 
 
 public class AdEditDeleteActivity extends AppCompatActivity implements LocationListener {
 
 
-    String user;
     private boolean mLocationPermissionGranted = false;
     EditText editTextName, editTextAddress, editTextOpen, editTextTel, editTextDetail, editTextLatitude, editTextLongtitude;
     Spinner spinner;
@@ -75,7 +75,7 @@ public class AdEditDeleteActivity extends AppCompatActivity implements LocationL
     DatabaseReference database_Pr,database_Cate;
     ProgressBar progressBar;
     FirebaseAuth mAuth;
-    TextView textView;
+    TextView textView,textView1;
     private LocationManager locationManager;
     public String key;
 
@@ -91,7 +91,7 @@ public class AdEditDeleteActivity extends AppCompatActivity implements LocationL
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
-        user = getIntent().getExtras().getString("Email");
+        //user = getIntent().getExtras().getString("Email");
 
         mAuth = FirebaseAuth.getInstance();
         editTextName = (EditText) findViewById(R.id.editTextName);
@@ -102,6 +102,7 @@ public class AdEditDeleteActivity extends AppCompatActivity implements LocationL
         editTextLatitude = (EditText) findViewById(R.id.editTextLatitude);
         editTextLongtitude = (EditText) findViewById(R.id.editTextLongtitude);
         textView = (TextView)findViewById(R.id.txt_pr_status);
+        textView1 = (TextView)findViewById(R.id.txt_pr_user);
         spinner = (Spinner) findViewById(R.id.spinnerCategory);
         button_approve = (Button) findViewById(R.id.button_approve);
         button_delete = (Button) findViewById(R.id.button_delete);
@@ -120,6 +121,7 @@ public class AdEditDeleteActivity extends AppCompatActivity implements LocationL
         String pr_longtitude = intent.getStringExtra(EXTRA_LONGTITUDEPR);
         String pr_category = intent.getStringExtra(EXTRA_CATEGORYPR);
         String pr_status = intent.getStringExtra(EXTRA_STATUSPR);
+        String pr_user = intent.getStringExtra(EXTRA_USERPR);
 
         editTextName.setText(pr_name);
         editTextAddress.setText(pr_address);
@@ -129,6 +131,8 @@ public class AdEditDeleteActivity extends AppCompatActivity implements LocationL
         editTextOpen.setText(pr_time);
         editTextTel.setText(pr_tel);
         textView.setText(pr_status);
+        textView1.setText(pr_user);
+
 
 
 
@@ -199,6 +203,7 @@ public class AdEditDeleteActivity extends AppCompatActivity implements LocationL
         String detail = editTextDetail.getText().toString().trim();
         String latitude = editTextLatitude.getText().toString().trim();
         String longtitude = editTextLongtitude.getText().toString().trim();
+        String user = textView1.getText().toString().trim();
         status = "Added";
         Date ts = Calendar.getInstance().getTime();
         String ts1 =  ts.toString();
@@ -277,6 +282,7 @@ public class AdEditDeleteActivity extends AppCompatActivity implements LocationL
         String detail = editTextDetail.getText().toString().trim();
         String latitude = editTextLatitude.getText().toString().trim();
         String longtitude = editTextLongtitude.getText().toString().trim();
+         String   user = textView1.getText().toString().trim();
         status = "Approved";
         Date ts = Calendar.getInstance().getTime();
         String ts1 = ts.toString();
@@ -336,6 +342,7 @@ public class AdEditDeleteActivity extends AppCompatActivity implements LocationL
         String detail = editTextDetail.getText().toString().trim();
         String latitude = editTextLatitude.getText().toString().trim();
         String longtitude = editTextLongtitude.getText().toString().trim();
+        String user = textView1.getText().toString().trim();
         String status = "Deleting";
         Date ts = Calendar.getInstance().getTime();
         String ts1 =  ts.toString();
@@ -407,7 +414,6 @@ public class AdEditDeleteActivity extends AppCompatActivity implements LocationL
             case R.id.menuHome:
                 Intent intent1 = new Intent(AdEditDeleteActivity.this, AdminActivity.class);
                 intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intent1.putExtra("Email", user);
                 intent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent1);
                 break;

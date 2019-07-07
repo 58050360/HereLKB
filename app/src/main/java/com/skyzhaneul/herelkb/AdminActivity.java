@@ -50,7 +50,7 @@ public class AdminActivity extends AppCompatActivity implements MyAdapter_pr.OnI
     public static final String EXTRA_LONGTITUDEPR = "pr_longtitude";
     public static final String EXTRA_DATEPR = "pr_date";
     public static final String EXTRA_STATUSPR = "pr_status";
-
+    public static final String EXTRA_USERPR = "pr_user";
 
     RecyclerView recyclerView;
     DatabaseReference databaseReference;
@@ -65,6 +65,7 @@ public class AdminActivity extends AppCompatActivity implements MyAdapter_pr.OnI
         setContentView(R.layout.activity_admin);
         arrayList = new ArrayList<>();
         Toolbar toolbar = findViewById(R.id.toolbar);
+
         setSupportActionBar(toolbar);
         recyclerView = (RecyclerView) findViewById(R.id.recycleview);
         button_prlist = (Button) findViewById(R.id.button_prlist);
@@ -289,8 +290,7 @@ public class AdminActivity extends AppCompatActivity implements MyAdapter_pr.OnI
         detailIntent.putExtra(EXTRA_LATITUDEPR,clickItem.getPr_Latitude());
         detailIntent.putExtra(EXTRA_LONGTITUDEPR,clickItem.getPr_Longtitude());
         detailIntent.putExtra(EXTRA_CATEGORYPR,clickItem.getPr_Category());
-
-        detailIntent.putExtra("Email",data);
+        detailIntent.putExtra(EXTRA_USERPR,clickItem.getPr_user());
 
         startActivity(detailIntent);
     }
