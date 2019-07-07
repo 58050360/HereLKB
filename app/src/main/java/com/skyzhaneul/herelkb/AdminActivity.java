@@ -57,7 +57,7 @@ public class AdminActivity extends AppCompatActivity implements MyAdapter_pr.OnI
     FirebaseRecyclerOptions<PrList> options;
     FirebaseRecyclerAdapter<PrList, PrListViewHolder> adapter;
     ArrayList<PrList> arrayList;
-    Button button_prlist,button_addlist;
+    Button button_prlist,button_addlist,button_history;
     String data;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +69,7 @@ public class AdminActivity extends AppCompatActivity implements MyAdapter_pr.OnI
         recyclerView = (RecyclerView) findViewById(R.id.recycleview);
         button_prlist = (Button) findViewById(R.id.button_prlist);
         button_addlist = (Button) findViewById(R.id.button_approvelist);
+        button_history = (Button)findViewById(R.id.button_history);
 
         button_prlist.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,6 +82,13 @@ public class AdminActivity extends AppCompatActivity implements MyAdapter_pr.OnI
             @Override
             public void onClick(View v) {
                 searchAdd();
+            }
+        });
+
+        button_history.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchHistory();
             }
         });
 
@@ -182,7 +190,34 @@ public class AdminActivity extends AppCompatActivity implements MyAdapter_pr.OnI
         });
     }
 
+    private void searchHistory() {
+        Query query = databaseReference.orderByChild("pr_Status").equalTo("Added");
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.hasChildren()) {
+                    arrayList.clear();
+                    for (DataSnapshot dss : dataSnapshot.getChildren()) {
+                        final PrList prList = dss.getValue(PrList.class);
+                        arrayList.add(prList);
+                    }
 
+                    MyAdapter_pr myAdapter_pr = new MyAdapter_pr(getApplicationContext(),arrayList);
+                    recyclerView.setAdapter(myAdapter_pr);
+                    myAdapter_pr.notifyDataSetChanged();
+                    recyclerView.setVisibility(View.VISIBLE);
+                    myAdapter_pr.setOnItemClickListener(AdminActivity.this);
+
+                } else { recyclerView.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
     @Override
     protected void onStart() {
         super.onStart();

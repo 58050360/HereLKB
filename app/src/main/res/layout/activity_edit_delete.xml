@@ -378,7 +378,7 @@
             style="@android:style/Widget.Holo.Button.Inset"
             android:layout_width="300dp"
             android:layout_height="45dp"
-            android:layout_below="@+id/button_approve"
+            android:layout_below="@+id/button_edit"
             android:layout_marginStart="11dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"

@@ -71,8 +71,8 @@ public class AdEditDeleteActivity extends AppCompatActivity implements LocationL
     private boolean mLocationPermissionGranted = false;
     EditText editTextName, editTextAddress, editTextOpen, editTextTel, editTextDetail, editTextLatitude, editTextLongtitude;
     Spinner spinner;
-    Button button_approve,button_delete,button_addlalong;
-    DatabaseReference database_Pr;
+    Button button_approve,button_delete,button_addlalong,button_add;
+    DatabaseReference database_Pr,database_Cate;
     ProgressBar progressBar;
     FirebaseAuth mAuth;
     TextView textView;
@@ -101,9 +101,11 @@ public class AdEditDeleteActivity extends AppCompatActivity implements LocationL
         editTextDetail = (EditText) findViewById(R.id.editTextDetail);
         editTextLatitude = (EditText) findViewById(R.id.editTextLatitude);
         editTextLongtitude = (EditText) findViewById(R.id.editTextLongtitude);
+        textView = (TextView)findViewById(R.id.txt_pr_status);
         spinner = (Spinner) findViewById(R.id.spinnerCategory);
         button_approve = (Button) findViewById(R.id.button_approve);
         button_delete = (Button) findViewById(R.id.button_delete);
+        button_add = (Button) findViewById(R.id.button_add);
         button_addlalong = (Button) findViewById(R.id.button_addlalong);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
@@ -126,9 +128,13 @@ public class AdEditDeleteActivity extends AppCompatActivity implements LocationL
         editTextLongtitude.setText(pr_longtitude);
         editTextOpen.setText(pr_time);
         editTextTel.setText(pr_tel);
+        textView.setText(pr_status);
+
+
 
         key = pr_date+" "+pr_status;
         database_Pr = FirebaseDatabase.getInstance().getReference("PrList");
+        database_Cate = FirebaseDatabase.getInstance().getReference("CategoryBackground");
 
 
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
@@ -149,7 +155,7 @@ public class AdEditDeleteActivity extends AppCompatActivity implements LocationL
         button_approve.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                editPRlist();
+                approvePRlist();
                 finish();
 
 
@@ -169,11 +175,22 @@ public class AdEditDeleteActivity extends AppCompatActivity implements LocationL
                 finish();
             }
         });
+
+        button_add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addPRlist();
+                finish();
+            }
+        });
     }
 
-
-
-    private void editPRlist() {
+    private void addPRlist(){
+        String status = textView.getText().toString().trim();
+        if (status.equals("Added")) {
+            Toast.makeText(this, "PR list Already Added", Toast.LENGTH_LONG).show();
+            return;
+        } else if ( status.equals("Approved")) {
         String name = editTextName.getText().toString().trim();
         String category = spinner.getSelectedItem().toString();
         String address = editTextAddress.getText().toString().trim();
@@ -182,10 +199,87 @@ public class AdEditDeleteActivity extends AppCompatActivity implements LocationL
         String detail = editTextDetail.getText().toString().trim();
         String latitude = editTextLatitude.getText().toString().trim();
         String longtitude = editTextLongtitude.getText().toString().trim();
-        String status = "Approved";
+        status = "Added";
         Date ts = Calendar.getInstance().getTime();
         String ts1 =  ts.toString();
+        String imagelink = "https://firebasestorage.googleapis.com/v0/b/herelkb.appspot.com/o/485x325.png?alt=media&token=5b5e6e52-7a84-40b4-bd55-43f149a3079a";
+        String imagelink2 = "https://firebasestorage.googleapis.com/v0/b/herelkb.appspot.com/o/485x325.png?alt=media&token=5b5e6e52-7a84-40b4-bd55-43f149a3079a";
+        String imagelink3 = "https://firebasestorage.googleapis.com/v0/b/herelkb.appspot.com/o/485x325.png?alt=media&token=5b5e6e52-7a84-40b4-bd55-43f149a3079a";
+        String imagelink4 = "https://firebasestorage.googleapis.com/v0/b/herelkb.appspot.com/o/485x325.png?alt=media&token=5b5e6e52-7a84-40b4-bd55-43f149a3079a";
 
+        if (name.isEmpty()) {
+            editTextName.setError("Name is required");
+            editTextName.requestFocus();
+            return;
+        }
+        if (address.isEmpty()) {
+            editTextAddress.setError("Address is required");
+            editTextAddress.requestFocus();
+            return;
+        }
+        if (open.isEmpty()) {
+            editTextOpen.setError("OpenTime is required");
+            editTextOpen.requestFocus();
+            return;
+        }
+        if (tel.isEmpty()) {
+            editTextTel.setError("Telephone Number is required");
+            editTextTel.requestFocus();
+            return;
+        }
+        if (detail.isEmpty()) {
+            editTextDetail.setError("Location Detail is required");
+            editTextDetail.requestFocus();
+            return;
+        }
+        if (latitude.isEmpty()) {
+            editTextLatitude.setError("Latitude is required");
+            editTextLatitude.requestFocus();
+            return;
+        }
+        if (longtitude.isEmpty()) {
+            editTextLongtitude.setError("Longtitude is required");
+            editTextLongtitude.requestFocus();
+            return;
+        }
+        String id = database_Pr.push().getKey();
+        String id_cate = database_Cate.push().getKey();
+        CategoryItem categoryItem = new CategoryItem(name,imagelink,detail,imagelink2, address, open, tel,imagelink3,imagelink4, category, latitude, longtitude);
+        String sent = ts1+" "+status+" "+name;
+        database_Cate.child(sent).setValue(categoryItem);
+        PrList prList = new PrList(name, category, address, open, tel, detail, latitude, longtitude, status,user,ts1);
+        database_Pr.child(sent).setValue(prList);
+        DatabaseReference remove_past_request = FirebaseDatabase.getInstance().getReference("PrList").child(key);
+        remove_past_request.removeValue();
+        Toast.makeText(this, "Success Added", Toast.LENGTH_LONG).show();}
+
+        else
+            Toast.makeText(this, "This public relation Status is Not Approved", Toast.LENGTH_LONG).show();
+            return; }
+
+
+
+
+    private void approvePRlist() {
+        String status = textView.getText().toString().trim();
+        if (status.equals("Added")) {
+            Toast.makeText(this, "PR list Already Added", Toast.LENGTH_LONG).show();
+            return;
+        } else if (status.equals("Approved")) {
+            Toast.makeText(this, "PR list Already Approved", Toast.LENGTH_LONG).show();
+            return;
+        } else {
+        String name = editTextName.getText().toString().trim();
+        String category = spinner.getSelectedItem().toString();
+        String address = editTextAddress.getText().toString().trim();
+        String open = editTextOpen.getText().toString().trim();
+        String tel = editTextTel.getText().toString().trim();
+        String detail = editTextDetail.getText().toString().trim();
+        String latitude = editTextLatitude.getText().toString().trim();
+        String longtitude = editTextLongtitude.getText().toString().trim();
+        status = "Approved";
+        Date ts = Calendar.getInstance().getTime();
+        String ts1 = ts.toString();
 
 
         if (name.isEmpty()) {
@@ -224,18 +318,20 @@ public class AdEditDeleteActivity extends AppCompatActivity implements LocationL
             return;
         }
         String id = database_Pr.push().getKey();
-        PrList prList = new PrList(name, category, address, open, tel, detail, latitude, longtitude, status,user,ts1);
-        String sent = ts1+" "+status;
+        PrList prList = new PrList(name, category, address, open, tel, detail, latitude, longtitude, status, user, ts1);
+        String sent = ts1 + " " + status;
         database_Pr.child(sent).setValue(prList);
         DatabaseReference remove_past_request = FirebaseDatabase.getInstance().getReference("PrList").child(key);
         remove_past_request.removeValue();
         Toast.makeText(this, "PR list Approving", Toast.LENGTH_LONG).show();
-    }
+
+    } }
+
     private void deletePRlist() {
         String name = editTextName.getText().toString().trim();
         String category = spinner.getSelectedItem().toString();
         String address = editTextAddress.getText().toString().trim();
-        String open = editTextOpen.getText().toString().trim();
+        String open =  editTextOpen.getText().toString().trim();
         String tel = editTextTel.getText().toString().trim();
         String detail = editTextDetail.getText().toString().trim();
         String latitude = editTextLatitude.getText().toString().trim();
@@ -284,7 +380,7 @@ public class AdEditDeleteActivity extends AppCompatActivity implements LocationL
         String id = database_Pr.push().getKey();
         PrList prList = new PrList(name, category, address, open, tel, detail, latitude, longtitude, status,user,ts1);
         String sent = ts1+" "+status;
-        database_Pr.child(sent).setValue(prList);
+        //database_Pr.child(sent).setValue(prList);
         DatabaseReference remove_past_request = FirebaseDatabase.getInstance().getReference("PrList").child(key);
         remove_past_request.removeValue();
         Toast.makeText(this, "PR list Deleting", Toast.LENGTH_LONG).show();

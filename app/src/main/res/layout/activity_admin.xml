@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/back"
+    android:background="@color/colorbutton2"
     tools:context=".FoodActivity">
 
 
@@ -32,7 +32,7 @@
 
     <Button
         android:id="@+id/button_prlist"
-        android:layout_width="180dp"
+        android:layout_width="150dp"
         android:layout_height="49dp"
         android:layout_below="@id/txt_search"
         android:layout_marginStart="20dp"
@@ -40,7 +40,7 @@
         android:layout_marginEnd="0dp"
         android:background="@drawable/shape_layout3"
         android:drawableLeft="@drawable/ic_action_prlist"
-        android:paddingLeft="30dp"
+        android:paddingLeft="10dp"
         android:text="PR List"
         android:textColor="#FFFFFF"
         android:textStyle="normal|bold"
@@ -50,22 +50,40 @@
 
     <Button
         android:id="@+id/button_approvelist"
-        android:layout_width="180dp"
+        android:layout_width="150dp"
         android:layout_height="49dp"
         android:layout_below="@id/txt_search"
         android:layout_marginStart="15dp"
         android:layout_marginTop="14dp"
         android:layout_marginEnd="10dp"
-        android:text="Add List"
+        android:text="Approved List"
         android:layout_toEndOf="@id/button_prlist"
         android:background="@drawable/shape_layout2"
         android:textColor="#FFFFFF"
         android:drawableLeft="@drawable/ic_action_pradd"
         android:drawablePadding="-10dp"
-        android:paddingLeft="30dp"
+        android:paddingLeft="10dp"
         android:textStyle="normal|bold"
         android:typeface="monospace"
         app:srcCompat="@drawable/ic_action_cafe"
+        tools:textSize="18sp" />
+
+    <Button
+        android:id="@+id/button_history"
+        android:layout_width="150dp"
+        android:layout_height="49dp"
+        android:layout_below="@id/button_prlist"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="0dp"
+        android:background="@drawable/shape_layout3"
+        android:drawableLeft="@drawable/ic_action_history"
+        android:paddingLeft="10dp"
+        android:text="History"
+        android:textColor="#FFFFFF"
+        android:textStyle="normal|bold"
+        android:typeface="monospace"
+        app:srcCompat="@drawable/ic_action_restaurants"
         tools:textSize="18sp" />
 
 
@@ -74,7 +92,7 @@
         android:id="@+id/recycleview"
         android:layout_width="match_parent"
         android:layout_height="500dp"
-        android:layout_below="@id/button_prlist"
+        android:layout_below="@id/button_history"
         android:layout_marginTop="15dp"
         android:visibility="gone"
         tools:itemCount="10"

@@ -152,7 +152,7 @@
 
         <TextView
             android:id="@+id/text_view_locationLatitude"
-            android:layout_width="200dp"
+            android:layout_width="300dp"
             android:layout_height="30dp"
             android:layout_below="@+id/map"
             android:layout_alignParentStart="true"
@@ -165,7 +165,7 @@
             android:typeface="monospace" />
         <TextView
             android:id="@+id/text_view_locationLong"
-            android:layout_width="200dp"
+            android:layout_width="300dp"
             android:layout_height="30dp"
             android:layout_below="@+id/text_view_locationLatitude"
             android:layout_alignParentStart="true"

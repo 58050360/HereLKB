@@ -360,14 +360,14 @@
             android:layout_below="@+id/editTextDetail"
             android:layout_marginStart="11dp"
             android:layout_marginTop="20dp"
-            android:layout_marginEnd="0dp"
+            android:layout_marginEnd="10dp"
             android:layout_marginBottom="0dp"
-            android:background="@drawable/shape_layout4"
+            android:background="@drawable/shape_layout6"
             android:drawableLeft="@drawable/ic_action_approve"
-            android:drawablePadding="-20dp"
+            android:drawablePadding="-10dp"
             android:paddingLeft="10dp"
             android:text="Approve Public Relations"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/back"
             android:textStyle="normal|bold"
             android:layout_centerHorizontal="true"
             android:typeface="monospace"
@@ -376,23 +376,46 @@
         <Button
             android:id="@+id/button_delete"
             style="@android:style/Widget.Holo.Button.Inset"
-            android:layout_width="300dp"
+            android:layout_width="330dp"
             android:layout_height="45dp"
-            android:layout_below="@+id/button_approve"
+            android:layout_below="@+id/button_add"
             android:layout_marginStart="11dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="10dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/shape_layout4"
             android:drawableLeft="@drawable/ic_action_delete"
-            android:drawablePadding="-20dp"
+            android:drawablePadding="-10dp"
             android:paddingLeft="5dp"
             android:text="Delete Public Relations"
             android:textColor="#FFFFFF"
             android:textStyle="normal|bold"
             android:typeface="monospace"
             tools:textSize="18sp" />
+
+
+        <Button
+            android:id="@+id/button_add"
+            style="@android:style/Widget.Holo.Button.Inset"
+            android:layout_width="330dp"
+            android:layout_height="45dp"
+            android:layout_below="@+id/button_approve"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="11dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="0dp"
+            android:background="@drawable/shape_layout7"
+            android:drawableLeft="@drawable/ic_action_add"
+            android:drawablePadding="-10dp"
+            android:paddingLeft="5dp"
+            android:text="Add"
+            android:textColor="#FFFFFF"
+            android:textStyle="normal|bold"
+            android:typeface="monospace"
+            tools:textSize="18sp" />
+
         <Button
             android:id="@+id/button_addlalong"
             style="@android:style/Widget.Holo.Button.Inset"
@@ -412,6 +435,20 @@
             android:textStyle="normal|bold"
             android:typeface="monospace"
             tools:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/txt_pr_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/button_delete"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="20dp"
+            android:paddingTop="10dp"
+            android:text="Location Status"
+            android:textColor="@color/back"
+            android:textSize="13dp"
+            android:textStyle="normal"
+            android:typeface="monospace" />
 
 
         <ProgressBar
